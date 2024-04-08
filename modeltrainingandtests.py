@@ -1,6 +1,14 @@
 
 #sentiment
-pip install transformers
+#pip install transformers
+#pip install -U bertopic
+from bertopic import BERTopic
+#pip install keybert
+from keybert import KeyBERT
+# pip install rake-nltk
+# pip install nltk
+from rake_nltk import Rake
+import nltk
 from transformers import pipeline
 import pandas as pd
 import seaborn as sns
@@ -257,23 +265,15 @@ summarizer = pipeline("summarization", min_length=0, max_length=15)
 summarizer(dataset.content[1])
 
 # topic modelling, idk.. doesn't seem to work too well on predefined topic list
-#!pip install -U bertopic
-from bertopic import BERTopic
 topic_model = BERTopic.load("davanstrien/transformers_issues_topics")
 topic, prob = topic_model.transform(dataset.content[1])
 
 # keyword extraction, keyBERT
-pip install keybert
-from keybert import KeyBERT
 kw_model = KeyBERT()
 keywords = kw_model.extract_keywords(dataset.content[1])
 print(keywords)
 
 # keyword extraction, rake-nltk
-pip install rake-nltk
-pip install nltk
-from rake_nltk import Rake
-import nltk
 nltk.download('stopwords')
 nltk.download('punkt')
 r=Rake()
@@ -290,10 +290,6 @@ Alternative to NPS since we don't have raw data for NPS
 https://chattermill.com/blog/nps-calculator#:~:text=Calculating%20your%20net%20promoter%20score,number%20between%20%2D100%20and%20100.
 """
 
-pip install transformers
-pip install keybert
-from transformers import pipeline
-from keybert import KeyBERT
 
 gxs_reviews = pd.concat([gxsplaystore_dropped, gxsapple_dropped_renamed], axis=0, ignore_index=True)
 
@@ -345,15 +341,4 @@ def summarise_sentiment(reviews): #havent test this fn
 
 summarise_sentiment(gxs_reviews)
 
-"""# Using GPT to reply to reviews
-*   finetune a gpt with review replies
-*   
- test and see accuracy of gpt replies to content column with replies from gxs
-(we need more data of companies replying to reviewers because our dataset is VERY SMALL)
-"""
 
-from transformers import pipeline
-
-prompt = "Write an email about an alpaca that likes flan"
-model = pipeline(model="declare-lab/flan-alpaca-gpt4-xl")
-model(prompt, max_length=128, do_sample=True)

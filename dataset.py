@@ -1,10 +1,11 @@
-
-
-pip install app_store_scraper
+#pip install app_store_scraper
 from app_store_scraper import AppStore
 import pandas as pd
 import numpy as np
 import json
+#pip install google_play_scraper
+from google_play_scraper import app
+from google_play_scraper import Sort, reviews_all
 
 gxs = AppStore(country='sg', app_name='gxs-bank', app_id = '1632183616')
 gxs.review(how_many=600)
@@ -46,14 +47,7 @@ ocbc_df2.to_csv('ocbc-apple-app-reviews.csv')
 ocbc_df2.rating.unique()
 
 
-
-
-pip install google_play_scraper
-from google_play_scraper import app
-import pandas as pd
-import numpy as np
-
-from google_play_scraper import Sort, reviews_all
+#google playstore reviews
 
 sg_reviews = reviews_all(
     'sg.com.gxs.app',
@@ -74,8 +68,6 @@ df_gxs.to_csv('gxs_playstore2.csv')
 # files.download('gxs_playstore2.csv')
 
 # Data Cleaning
-
-import pandas as pd
 gxsapple=pd.read_csv('gxs-apple-app-reviews.csv', index_col=0)
 gxsplaystore=pd.read_csv('gxs_playstore2.csv', index_col=0)
 posbapple=pd.read_csv('posb-apple-app-reviews.csv', index_col=0)
