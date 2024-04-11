@@ -112,11 +112,11 @@ gxsapple['title_review'] = gxsapple['title'] + ' : ' + gxsapple['review']
 
 gxsapple['thumbsUp']= 0
 
-
-gxsapple['developerResponse'] = gxsapple['developerResponse'].str.replace(r"\{'id': \d+, 'body':", "", regex=True)
-gxsapple['developerResponse']=gxsapple['developerResponse'].str.rstrip("}")
-gxsapple['developerResponse'] = gxsapple['developerResponse'].str.replace('"', '', regex=False)
-gxsapple['developerResponse'] = gxsapple['developerResponse'].str.replace("'", '', regex=False)
+gxsapple['developerResponse'] = gxsapple['developerResponse'].apply(lambda x: x.get('body') if isinstance(x, dict) else x)
+# gxsapple['developerResponse'] = gxsapple['developerResponse'].str.replace(r"\{'id': \d+, 'body':", "", regex=True)
+# gxsapple['developerResponse']=gxsapple['developerResponse'].str.rstrip("}")
+# gxsapple['developerResponse'] = gxsapple['developerResponse'].str.replace('"', '', regex=False)
+# gxsapple['developerResponse'] = gxsapple['developerResponse'].str.replace("'", '', regex=False)
 
 
 gxsapple_dropped = gxsapple.drop(columns=['title', 'review', 'userName', 'isEdited', 'date'])
