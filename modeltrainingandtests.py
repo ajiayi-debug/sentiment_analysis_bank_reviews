@@ -11,8 +11,31 @@ import nltk
 from transformers import pipeline
 import pandas as pd
 import seaborn as sns
+import mysql.connector
+import pandas as pd
 
-dataset = pd.read_csv("combined_reviews.csv", index_col=0)
+# Database connection parameters
+config = {
+    'user': 'root',
+    'password': 'JJY#91296517',
+    'host': '127.0.0.1',
+    'database': 'database',
+}
+
+# Establish a connection
+cnx = mysql.connector.connect(**config)
+
+# Define your query
+query = f"SELECT * FROM combined_reviews"
+
+# Use pandas to load sql query into a DataFrame
+dataset = pd.read_sql(query, con=cnx)
+
+# Don't forget to close the connection when done
+cnx.close()
+
+
+#dataset = pd.read_csv("combined_reviews.csv", index_col=0)
 #dataset = combined_reviews
 
 dataset.score.unique()
@@ -35,7 +58,7 @@ dataset['score_sentiment'] = score_sentiment
 dataset['score_sentiment'].value_counts()
 
 
-dataset.to_csv("sentiment.csv")
+#dataset.to_csv("sentiment.csv")
 
 
 
@@ -74,9 +97,53 @@ sentiment_accuracy(fin_model)
 
 #Finetuning
 
-datasettrain = pd.read_csv('dataset_train.csv')
+# Database connection parameters
+config = {
+    'user': 'root',
+    'password': 'JJY#91296517',
+    'host': '127.0.0.1',
+    'database': 'database',
+}
 
-datasettest=pd.read_csv('dataset_test.csv')
+# Establish a connection
+cnx = mysql.connector.connect(**config)
+
+# Define your query
+query = f"SELECT * FROM datasettest"
+
+# Use pandas to load sql query into a DataFrame
+datasettest = pd.read_sql(query, con=cnx)
+
+
+# Don't forget to close the connection when done
+cnx.close()
+
+import mysql.connector
+import pandas as pd
+
+# Database connection parameters
+config = {
+    'user': 'root',
+    'password': 'JJY#91296517',
+    'host': '127.0.0.1',
+    'database': 'database',
+}
+
+# Establish a connection
+cnx = mysql.connector.connect(**config)
+
+# Define your query
+query = f"SELECT * FROM datasettrain"
+
+# Use pandas to load sql query into a DataFrame
+datasettrain = pd.read_sql(query, con=cnx)
+
+# Don't forget to close the connection when done
+cnx.close()
+
+# datasettrain = pd.read_csv('dataset_train.csv')
+
+# datasettest=pd.read_csv('dataset_test.csv')
 
 score_sentiment_train = []
 for score in datasettrain.score:
