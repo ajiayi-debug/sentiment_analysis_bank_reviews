@@ -8,7 +8,9 @@ This project aims to provide our organisation with an easy and methodical way of
 ## Data Scraping
 Data scraping for this project was carried out in March 2024. Data was obtained from various banking apps on the Apple Store and Google Play Store. Relevant information such as ratings, comments, replies, and thumbs up counts were retained. Other information that contained personal information or were not useful were discarded. The code used for data scraping can be found in [dataset.py](dataset.py). The final dataset was subsequently uploaded to an SQL database for easier access and retrieval.
 
-## [Model Description](modeltrainingandtests.py)
+## Model Description
+The code for model training and testing can be found [here](modeltrainingandtests.py).
+
 ### Sentiment Analysis
 We performed sentiment analysis using a fine-tuned HuggingFace model. For the labels, we used the star ratings collected, classifying reviews with 4 or 5 stars as 'postiive' and the rest as 'negative'.
 
