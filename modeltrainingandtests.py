@@ -13,6 +13,8 @@ import pandas as pd
 import seaborn as sns
 import mysql.connector
 import pandas as pd
+import mysql.connector as mysql
+from sqlalchemy import create_engine
 
 # Database connection parameters
 config = {
@@ -58,7 +60,27 @@ dataset['score_sentiment'] = score_sentiment
 dataset['score_sentiment'].value_counts()
 
 
-#dataset.to_csv("sentiment.csv")
+# dataset.to_csv("sentiment.csv")
+
+#Sending data to mysql database
+
+user = 'root'
+password = 'SQL12345'
+host = 'ec2-54-254-215-140.ap-southeast-1.compute.amazonaws.com'
+database = 'database'
+
+# Create a connection string
+conn_string = f'mysql+mysqlconnector://{user}:{password}@{host}/{database}'
+
+# Create an engine
+engine = create_engine(conn_string)
+
+dataset.to_sql(name='sentiment', con=engine, if_exists='replace', index=False)
+
+
+engine.dispose()
+
+##TO CALL THE SENTIMENT AS A CSV, REFER TO MYSQLTOCSVTEST>PY
 
 
 

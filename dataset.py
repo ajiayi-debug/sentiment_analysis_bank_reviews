@@ -8,9 +8,7 @@ from google_play_scraper import app
 from google_play_scraper import Sort, reviews_all
 import mysql.connector as mysql
 from sqlalchemy import create_engine
-import re
-import time
-import random
+
 
 gxs = AppStore(country='sg', app_name='gxs-bank', app_id = '1632183616')
 gxs.review(how_many=600)
