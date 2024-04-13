@@ -20,4 +20,4 @@ We used a net sentiment figure as a summary of overall sentiment. The net sentim
 To summarise overall intent, two dictionaries containing intents associated with positive and negative sentiment reviews respectively. These dictionaries are sorted in descending frequency of keywords.
 
 ## GPT
-As an extension to our project, we wanted to create a language model that was able to generate replies to reviews. For this, the causal language model from HuggingFace was used, with the baseline model 'oopenai-community/gpt2'. The code for the finetuning of the GPT can be found [here](gpt_finetune_causallm.ipynb).
+As an extension to our project, we wanted to create a language model that was able to generate replies to reviews. For this, the causal language model from HuggingFace was used, with the baseline model 'openai-community/gpt2'. The code for the finetuning of the GPT can be found [here](gpt_finetune_causallm.ipynb).
