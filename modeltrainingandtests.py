@@ -17,8 +17,8 @@ import pandas as pd
 # Database connection parameters
 config = {
     'user': 'root',
-    'password': 'JJY#91296517',
-    'host': '127.0.0.1',
+    'password': 'SQL12345',
+    'host': 'ec2-54-254-215-140.ap-southeast-1.compute.amazonaws.com',
     'database': 'database',
 }
 
@@ -100,8 +100,8 @@ sentiment_accuracy(fin_model)
 # Database connection parameters
 config = {
     'user': 'root',
-    'password': 'JJY#91296517',
-    'host': '127.0.0.1',
+    'password': 'SQL12345',
+    'host': 'ec2-54-254-215-140.ap-southeast-1.compute.amazonaws.com',
     'database': 'database',
 }
 
@@ -124,8 +124,8 @@ import pandas as pd
 # Database connection parameters
 config = {
     'user': 'root',
-    'password': 'JJY#91296517',
-    'host': '127.0.0.1',
+    'password': 'SQL12345',
+    'host': 'ec2-54-254-215-140.ap-southeast-1.compute.amazonaws.com',
     'database': 'database',
 }
 

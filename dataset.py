@@ -183,8 +183,8 @@ datasettest=pd.concat([gxsplaystore_dropped, gxsapple_dropped_renamed], axis=0, 
 #Sending data to mysql database
 
 user = 'root'
-password = 'JJY#91296517'
-host = '127.0.0.1'
+password = 'SQL12345'
+host = 'ec2-54-254-215-140.ap-southeast-1.compute.amazonaws.com'
 database = 'database'
 
 # Create a connection string
