@@ -12,7 +12,7 @@ Data scraping for this project was carried out in March 2024. Data was obtained 
 The code for model training and testing can be found [here](modeltrainingandtests.py).
 
 ### Sentiment Analysis
-We performed sentiment analysis using a fine-tuned HuggingFace model. For the labels, we used the star ratings collected, classifying reviews with 4 or 5 stars as 'postiive' and the rest as 'negative'.
+We performed sentiment analysis using a fine-tuned HuggingFace model. For the labels, we used the star ratings collected, classifying reviews with 4 or 5 stars as 'positive' and the rest as 'negative'.
 
 ### Intent Extraction
 To extract intent from reviews, we tried a few different methods: text summarisation, topic modelling, and keyword extraction using KeyBERT and rake-nltk. We found that text summarisation did not work well as the reviews were too short, while topic modelling was not feasible as we did not have a predefined topic list that was comprehensive enough. In the end, the keyBERT model was used for intent extraction.
@@ -23,3 +23,4 @@ To summarise overall intent, two dictionaries containing intents associated with
 
 ## GPT
 As an extension to our project, we wanted to create a language model that was able to generate replies to reviews. For this, the causal language model from HuggingFace was used, with the baseline model 'openai-community/gpt2'. The code for the finetuning of the GPT can be found [here](gpt_finetune_causallm.ipynb).
+
