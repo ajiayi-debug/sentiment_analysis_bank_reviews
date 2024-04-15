@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  dsa3101group19:
+    image: dsa3101group19
+    build:
+      context: .
+      dockerfile: ./Dockerfile
