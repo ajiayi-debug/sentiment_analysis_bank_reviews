@@ -117,43 +117,55 @@ gxsapple['developerResponse'] = gxsapple['developerResponse'].apply(lambda x: x.
 # gxsapple['developerResponse'] = gxsapple['developerResponse'].str.replace("'", '', regex=False)
 
 
-gxsapple_dropped = gxsapple.drop(columns=['title', 'review', 'userName', 'isEdited', 'date'])
+gxsapple_dropped = gxsapple.drop(columns=['title', 'review', 'userName', 'isEdited'])
 
 posbapple['title_review'] = posbapple['title'] + ' : ' + posbapple['review']
 posbapple['thumbsUp']= 0
 posbapple['developerResponse']=''
-posbapple_dropped = posbapple.drop(columns=['title', 'review', 'userName', 'isEdited', 'date'])
+posbapple_dropped = posbapple.drop(columns=['title', 'review', 'userName', 'isEdited'])
 
 ocbcapple['title_review'] = ocbcapple['title'] + ' : ' + ocbcapple['review']
 ocbcapple['thumbsUp']= 0
 ocbcapple['developerResponse']=''
-ocbcapple_dropped = ocbcapple.drop(columns=['title', 'review', 'userName', 'isEdited', 'date'])
+ocbcapple_dropped = ocbcapple.drop(columns=['title', 'review', 'userName', 'isEdited'])
 
-gxsplaystore_dropped=gxsplaystore.drop(columns=['reviewId','userName','userImage','reviewCreatedVersion','at','repliedAt','appVersion'])
+gxsplaystore_dropped=gxsplaystore.drop(columns=['reviewId','userName','userImage','reviewCreatedVersion','repliedAt','appVersion'])
 neworder=['replyContent', 'score', 'content', 'thumbsUpCount']
 gxsplaystore_dropped=gxsplaystore_dropped[neworder]
 
-gxsplaystore_dropped.head()
+
+
+gxsplaystore_dropped=gxsplaystore_dropped.rename(columns={
+    'content': 'content',
+    'thumbsUpCount': 'thumbsUpCount',
+    'replyContent': 'replyContent',
+    'score': 'score',
+    'at':'date'
+})
 
 gxsapple_dropped_renamed = gxsapple_dropped.rename(columns={
     'title_review': 'content',
     'thumbsUp': 'thumbsUpCount',
     'developerResponse': 'replyContent',
-    'rating': 'score'
+    'rating': 'score',
+    'date':'date'
 })
 
 posbapple_dropped_renamed= posbapple_dropped.rename(columns={
     'title_review': 'content',
     'thumbsUp': 'thumbsUpCount',
     'developerResponse': 'replyContent',
-    'rating': 'score'
+    'rating': 'score',
+    'date':'date'
+
 })
 
 ocbcapple_dropped_renamed= ocbcapple_dropped.rename(columns={
     'title_review': 'content',
     'thumbsUp': 'thumbsUpCount',
     'developerResponse': 'replyContent',
-    'rating': 'score'
+    'rating': 'score',
+    'date':'date'
 })
 
 combined_reviews = pd.concat([gxsplaystore_dropped, gxsapple_dropped_renamed, posbapple_dropped_renamed, ocbcapple_dropped_renamed], axis=0, ignore_index=True)
@@ -182,7 +194,7 @@ datasettest=pd.concat([gxsplaystore_dropped, gxsapple_dropped_renamed], axis=0, 
 
 user = 'root'
 password = 'SQL12345'
-host = 'ec2-54-254-215-140.ap-southeast-1.compute.amazonaws.com'
+host = 'ec2-13-212-240-70.ap-southeast-1.compute.amazonaws.com'
 database = 'database'
 
 # Create a connection string

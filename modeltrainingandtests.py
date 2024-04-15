@@ -20,7 +20,7 @@ from sqlalchemy import create_engine
 config = {
     'user': 'root',
     'password': 'SQL12345',
-    'host': 'ec2-54-254-215-140.ap-southeast-1.compute.amazonaws.com',
+    'host': 'ec2-13-212-240-70.ap-southeast-1.compute.amazonaws.com',
     'database': 'database',
 }
 
@@ -66,7 +66,7 @@ dataset['score_sentiment'].value_counts()
 
 user = 'root'
 password = 'SQL12345'
-host = 'ec2-54-254-215-140.ap-southeast-1.compute.amazonaws.com'
+host = 'ec2-13-212-240-70.ap-southeast-1.compute.amazonaws.com'
 database = 'database'
 
 # Create a connection string
@@ -123,7 +123,7 @@ sentiment_accuracy(fin_model)
 config = {
     'user': 'root',
     'password': 'SQL12345',
-    'host': 'ec2-54-254-215-140.ap-southeast-1.compute.amazonaws.com',
+    'host': 'ec2-13-212-240-70.ap-southeast-1.compute.amazonaws.com',
     'database': 'database',
 }
 
@@ -147,7 +147,7 @@ import pandas as pd
 config = {
     'user': 'root',
     'password': 'SQL12345',
-    'host': 'ec2-54-254-215-140.ap-southeast-1.compute.amazonaws.com',
+    'host': 'ec2-13-212-240-70.ap-southeast-1.compute.amazonaws.com',
     'database': 'database',
 }
 
@@ -377,6 +377,75 @@ Alternative to NPS since we don't have raw data for NPS
 
 https://chattermill.com/blog/nps-calculator#:~:text=Calculating%20your%20net%20promoter%20score,number%20between%20%2D100%20and%20100.
 """
+config = {
+    'user': 'root',
+    'password': 'SQL12345',
+    'host': 'ec2-13-212-240-70.ap-southeast-1.compute.amazonaws.com',
+    'database': 'database',
+}
+
+# Establish a connection
+cnx = mysql.connector.connect(**config)
+
+# Define your query
+query = f"SELECT * FROM gxs-apple-app-reviews"
+
+# Use pandas to load sql query into a DataFrame
+gxs_apple_app_gxs_reviews = pd.read_sql(query, con=cnx)
+
+# Don't forget to close the connection when done
+cnx.close()
+gxsapple=gxs_apple_app_gxs_reviews
+
+gxsapple['title_review'] = gxsapple['title'] + ' : ' + gxsapple['review']
+
+gxsapple['thumbsUp']= 0
+
+gxsapple['developerResponse'] = gxsapple['developerResponse'].apply(lambda x: x.get('body') if isinstance(x, dict) else x)
+
+gxsapple_dropped = gxsapple.drop(columns=['title', 'review', 'userName', 'isEdited'])
+
+gxsapple_dropped_renamed = gxsapple_dropped.rename(columns={
+    'title_review': 'content',
+    'thumbsUp': 'thumbsUpCount',
+    'developerResponse': 'replyContent',
+    'rating': 'score',
+    'date':'date'
+})
+
+
+config = {
+    'user': 'root',
+    'password': 'SQL12345',
+    'host': 'ec2-13-212-240-70.ap-southeast-1.compute.amazonaws.com',
+    'database': 'database',
+}
+
+# Establish a connection
+cnx = mysql.connector.connect(**config)
+
+# Define your query
+query = f"SELECT * FROM gxs-playstore-app-reviews"
+
+# Use pandas to load sql query into a DataFrame
+gxs_playstore_app_gxs_reviews = pd.read_sql(query, con=cnx)
+
+# Don't forget to close the connection when done
+cnx.close()
+
+gxsplaystore_dropped=gxs_playstore_app_gxs_reviews.drop(columns=['reviewId','userName','userImage','reviewCreatedVersion','repliedAt','appVersion'])
+neworder=['replyContent', 'score', 'content', 'thumbsUpCount']
+gxsplaystore_dropped=gxsplaystore_dropped[neworder]
+
+
+
+gxsplaystore_dropped=gxsplaystore_dropped.rename(columns={
+    'content': 'content',
+    'thumbsUpCount': 'thumbsUpCount',
+    'replyContent': 'replyContent',
+    'score': 'score',
+    'at':'date'
+})
 
 
 gxs_reviews = pd.concat([gxsplaystore_dropped, gxsapple_dropped_renamed], axis=0, ignore_index=True)
