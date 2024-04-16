@@ -13,18 +13,16 @@ import pandas as pd
 import seaborn as sns
 import mysql.connector
 import pandas as pd
-import mysql.connector as mysql
+import mysql.connector
 from sqlalchemy import create_engine
+import json
+import pandas as pd
 
-# Database connection parameters
-config = {
-    'user': 'root',
-    'password': 'SQL12345',
-    'host': 'ec2-13-212-240-70.ap-southeast-1.compute.amazonaws.com',
-    'database': 'database',
-}
+# Load database configuration from JSON file
+with open('config.json') as config_file:
+    config = json.load(config_file)['database']
 
-# Establish a connection
+# Establish a connection using the loaded configuration
 cnx = mysql.connector.connect(**config)
 
 # Define your query
@@ -62,15 +60,17 @@ dataset['score_sentiment'].value_counts()
 
 # dataset.to_csv("sentiment.csv")
 
-#Sending data to mysql database
+# Load database configuration from JSON file
+with open('config.json') as config_file:
+    config = json.load(config_file)['database']
 
-user = 'root'
-password = 'SQL12345'
-host = 'ec2-13-212-240-70.ap-southeast-1.compute.amazonaws.com'
-database = 'database'
-
-# Create a connection string
-conn_string = f'mysql+mysqlconnector://{user}:{password}@{host}/{database}'
+# Construct the connection string using the loaded configuration
+user = config['user']
+password = config['password']
+host = config['host']
+dbname = config['database']
+port = config['port']
+conn_string = f'mysql+mysqlconnector://{user}:{password}@{host}:{port}/{dbname}'
 
 # Create an engine
 engine = create_engine(conn_string)
@@ -119,15 +119,11 @@ sentiment_accuracy(fin_model)
 
 #Finetuning
 
-# Database connection parameters
-config = {
-    'user': 'root',
-    'password': 'SQL12345',
-    'host': 'ec2-13-212-240-70.ap-southeast-1.compute.amazonaws.com',
-    'database': 'database',
-}
+# Load database configuration from JSON file
+with open('config.json') as config_file:
+    config = json.load(config_file)['database']
 
-# Establish a connection
+# Establish a connection using the loaded configuration
 cnx = mysql.connector.connect(**config)
 
 # Define your query
@@ -143,15 +139,11 @@ cnx.close()
 import mysql.connector
 import pandas as pd
 
-# Database connection parameters
-config = {
-    'user': 'root',
-    'password': 'SQL12345',
-    'host': 'ec2-13-212-240-70.ap-southeast-1.compute.amazonaws.com',
-    'database': 'database',
-}
+# Load database configuration from JSON file
+with open('config.json') as config_file:
+    config = json.load(config_file)['database']
 
-# Establish a connection
+# Establish a connection using the loaded configuration
 cnx = mysql.connector.connect(**config)
 
 # Define your query
@@ -377,14 +369,11 @@ Alternative to NPS since we don't have raw data for NPS
 
 https://chattermill.com/blog/nps-calculator#:~:text=Calculating%20your%20net%20promoter%20score,number%20between%20%2D100%20and%20100.
 """
-config = {
-    'user': 'root',
-    'password': 'SQL12345',
-    'host': 'ec2-13-212-240-70.ap-southeast-1.compute.amazonaws.com',
-    'database': 'database',
-}
+# Load database configuration from JSON file
+with open('config.json') as config_file:
+    config = json.load(config_file)['database']
 
-# Establish a connection
+# Establish a connection using the loaded configuration
 cnx = mysql.connector.connect(**config)
 
 # Define your query
@@ -414,14 +403,11 @@ gxsapple_dropped_renamed = gxsapple_dropped.rename(columns={
 })
 
 
-config = {
-    'user': 'root',
-    'password': 'SQL12345',
-    'host': 'ec2-13-212-240-70.ap-southeast-1.compute.amazonaws.com',
-    'database': 'database',
-}
+# Load database configuration from JSON file
+with open('config.json') as config_file:
+    config = json.load(config_file)['database']
 
-# Establish a connection
+# Establish a connection using the loaded configuration
 cnx = mysql.connector.connect(**config)
 
 # Define your query

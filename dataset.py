@@ -190,15 +190,30 @@ datasettest=pd.concat([gxsplaystore_dropped, gxsapple_dropped_renamed], axis=0, 
 #datasettest.to_csv('dataset_test.csv')
 
 
-#Sending data to mysql database
+# #Sending data to mysql database
 
-user = 'root'
-password = 'SQL12345'
-host = 'ec2-13-212-240-70.ap-southeast-1.compute.amazonaws.com'
-database = 'database'
+# user = 'root'
+# password = 'SQL12345'
+# host = 'ec2-13-212-240-70.ap-southeast-1.compute.amazonaws.com'
+# database = 'database'
 
-# Create a connection string
-conn_string = f'mysql+mysqlconnector://{user}:{password}@{host}/{database}'
+# # Create a connection string
+# conn_string = f'mysql+mysqlconnector://{user}:{password}@{host}/{database}'
+
+# # Create an engine
+# engine = create_engine(conn_string)
+
+# Load database configuration from JSON file
+with open('config.json') as config_file:
+    config = json.load(config_file)['database']
+
+# Construct the connection string using the loaded configuration
+user = config['user']
+password = config['password']
+host = config['host']
+dbname = config['database']
+port = config['port']
+conn_string = f'mysql+mysqlconnector://{user}:{password}@{host}:{port}/{dbname}'
 
 # Create an engine
 engine = create_engine(conn_string)
