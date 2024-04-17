@@ -18,25 +18,24 @@ from sqlalchemy import create_engine
 import json
 import pandas as pd
 
-# Load database configuration from JSON file
-with open('config.json') as config_file:
-    config = json.load(config_file)['database']
+# # Load database configuration from JSON file
+# with open('config.json') as config_file:
+#     config = json.load(config_file)['database']
 
-# Establish a connection using the loaded configuration
-cnx = mysql.connector.connect(**config)
+# # Establish a connection using the loaded configuration
+# cnx = mysql.connector.connect(**config)
 
-# Define your query
-query = f"SELECT * FROM combined_reviews"
+# # Define your query
+# query = f"SELECT * FROM combined_reviews"
 
-# Use pandas to load sql query into a DataFrame
-dataset = pd.read_sql(query, con=cnx)
+# # Use pandas to load sql query into a DataFrame
+# dataset = pd.read_sql(query, con=cnx)
 
-# Don't forget to close the connection when done
-cnx.close()
+# # Don't forget to close the connection when done
+# cnx.close()
 
 
-#dataset = pd.read_csv("combined_reviews.csv", index_col=0)
-#dataset = combined_reviews
+dataset = pd.read_csv("combined_reviews.csv", index_col=0)
 
 dataset.score.unique()
 
@@ -58,7 +57,7 @@ dataset['score_sentiment'] = score_sentiment
 dataset['score_sentiment'].value_counts()
 
 
-# dataset.to_csv("sentiment.csv")
+dataset.to_csv("sentiment.csv")
 
 # Load database configuration from JSON file
 with open('config.json') as config_file:

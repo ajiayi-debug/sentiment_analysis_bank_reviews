@@ -176,8 +176,8 @@ print(combined_reviews.head())
 
 ocbcapple_dropped_renamed.score.unique() # data cleaning issue
 
-#combined_reviews.to_csv("combined_reviews.csv")
-# files.download('combined_reviews.csv')
+combined_reviews.to_csv("combined_reviews.csv")
+
 
 #For finetuning:
 
