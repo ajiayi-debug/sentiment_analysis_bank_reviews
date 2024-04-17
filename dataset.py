@@ -219,10 +219,10 @@ conn_string = f'mysql+mysqlconnector://{user}:{password}@{host}:{port}/{dbname}'
 engine = create_engine(conn_string)
 
 combined_reviews.to_sql(name='combined_reviews', con=engine, if_exists='replace', index=False)
-gxsapple.to_sql(name='gxs-apple-app-reviews', con=engine, if_exists='replace', index=False)
-posbapple.to_sql(name='posb-apple-app-reviews', con=engine, if_exists='replace', index=False)
-ocbcapple.to_sql(name='ocbc-apple-app-reviews', con=engine, if_exists='replace', index=False)
-gxsplaystore.to_sql(name='gxs-playstore-app-reviews', con=engine, if_exists='replace', index=False)
+gxsapple.to_sql(name='gxs_apple_app_reviews', con=engine, if_exists='replace', index=False)
+posbapple.to_sql(name='posb_apple_app_reviews', con=engine, if_exists='replace', index=False)
+ocbcapple.to_sql(name='ocbc_apple_app_reviews', con=engine, if_exists='replace', index=False)
+gxsplaystore.to_sql(name='gxs_playstore_app_reviews', con=engine, if_exists='replace', index=False)
 datasettest.to_sql(name='datasettest',con=engine, if_exists='replace', index=False)
 datasettrain.to_sql(name='datasettrain', con=engine, if_exists='replace', index=False)
 
