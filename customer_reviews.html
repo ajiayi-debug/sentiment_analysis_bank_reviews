@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Reviews</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Montserrat Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #0066cc; /* Change background color */
+            color: white; /* Change text color */
+        }
+  </style>
+</head>
+<body>
+  <div class="grid-container">
+    <!-- Header -->
+    <header class="header">
+      <a href="https://help.gxs.com.sg/"><img src="logo.png" alt="Logo"></a>
+    </header>
+    <!-- End Header -->
+
+    <!-- Sidebar -->
+    <aside id="sidebar">
+      <div class="sidebar-title">
+        <div class="sidebar-brand">
+          <span class="material-icons-outlined">category</span> FEATURES
+        </div>
+        <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+      </div>
+
+      <ul class="sidebar-list">
+        <li class="sidebar-list-item">
+          <a href="#" target="_blank">
+            <span class="material-icons-outlined">dashboard</span> Dashboard
+          </a>
+        </li>
+        <li class="sidebar-list-item" onclick="openCustomerDataPage()">
+            <span class="material-icons-outlined">people</span> Customer Data
+          </li>
+        <li class="sidebar-list-item">
+          <a href="settings.html" target="_blank">
+            <span class="material-icons-outlined">settings</span> Settings
+          </a>
+        </li>
+      </ul>
+    </aside>
+    <!-- End Sidebar -->
+
+    <div class="main-container">
+      <div class="main-title">
+        <h2>CUSTOMER REVIEWS</h2>
+      </div>
+      <div>
+      </div>
+      <div class="customer-reviews">
+        <!-- Customer reviews will be populated dynamically from JavaScript -->
+        <table id="csvTable">
+            <thead>
+                <tr>
+                    <th>Score</th>
+                    <th>Content</th>
+                    <th>Date</th>
+                    <th>Score Sentiment</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table body will be populated dynamically -->
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="customer_review.js"></script>
+</body>
+</html>

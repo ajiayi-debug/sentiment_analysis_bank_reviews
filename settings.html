@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Montserrat Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  <style>
+    /* Custom styles for the settings page */
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #1d2634; 
+      color: #ffffff; 
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    
+    .container {
+      background-color: #263043; 
+      border-radius: 10px;
+      padding: 40px;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+      max-width: 600px;
+      width: 90%;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .settings-options {
+      margin-top: 20px;
+    }
+
+    .setting {
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-size: 18px;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      background-color: #38445a; 
+      color: #ffffff; 
+      font-size: 16px;
+    }
+
+    select:focus {
+      outline: none;
+    }
+
+    option {
+      background-color: #5c1d71; 
+      color: #ffffff; 
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Settings</h1>
+    <div class="settings-options">
+      <div class="setting">
+        <label for="notifications">Notifications:</label>
+        <select id="notifications">
+          <option value="on">Turn On</option>
+          <option value="off">Turn Off</option>
+        </select>
+      </div>
+      <!-- Add more settings options as needed -->
+    </div>
+  </div>
+</body>
+</html>
