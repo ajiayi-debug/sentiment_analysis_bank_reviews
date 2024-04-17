@@ -18,24 +18,24 @@ from sqlalchemy import create_engine
 import json
 import pandas as pd
 
-# # Load database configuration from JSON file
-# with open('config.json') as config_file:
-#     config = json.load(config_file)['database']
+# Load database configuration from JSON file
+with open('config.json') as config_file:
+    config = json.load(config_file)['database']
 
-# # Establish a connection using the loaded configuration
-# cnx = mysql.connector.connect(**config)
+# Establish a connection using the loaded configuration
+cnx = mysql.connector.connect(**config)
 
-# # Define your query
-# query = f"SELECT * FROM combined_reviews"
+# Define your query
+query = f"SELECT * FROM combined_reviews"
 
-# # Use pandas to load sql query into a DataFrame
-# dataset = pd.read_sql(query, con=cnx)
+# Use pandas to load sql query into a DataFrame
+dataset = pd.read_sql(query, con=cnx)
 
-# # Don't forget to close the connection when done
-# cnx.close()
+# Don't forget to close the connection when done
+cnx.close()
 
 
-dataset = pd.read_csv("combined_reviews.csv", index_col=0)
+#dataset = pd.read_csv("combined_reviews.csv", index_col=0)
 
 dataset.score.unique()
 
@@ -74,7 +74,7 @@ conn_string = f'mysql+mysqlconnector://{user}:{password}@{host}:{port}/{dbname}'
 # Create an engine
 engine = create_engine(conn_string)
 
-dataset.to_sql(name='sentiment', con=engine, if_exists='replace', index=False)
+dataset.to_sql(name='our_predetermined_sentiment', con=engine, if_exists='replace', index=False)
 
 
 engine.dispose()
@@ -376,7 +376,7 @@ with open('config.json') as config_file:
 cnx = mysql.connector.connect(**config)
 
 # Define your query
-query = f"SELECT * FROM gxs-apple-app-reviews"
+query = f"SELECT * FROM gxs_apple_app_reviews"
 
 # Use pandas to load sql query into a DataFrame
 gxs_apple_app_gxs_reviews = pd.read_sql(query, con=cnx)
@@ -410,7 +410,7 @@ with open('config.json') as config_file:
 cnx = mysql.connector.connect(**config)
 
 # Define your query
-query = f"SELECT * FROM gxs-playstore-app-reviews"
+query = f"SELECT * FROM gxs_playstore_app_reviews"
 
 # Use pandas to load sql query into a DataFrame
 gxs_playstore_app_gxs_reviews = pd.read_sql(query, con=cnx)
