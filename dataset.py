@@ -172,11 +172,11 @@ combined_reviews = pd.concat([gxsplaystore_dropped, gxsapple_dropped_renamed, po
 if combined_reviews['replyContent'].apply(lambda x: isinstance(x, dict)).any():
     combined_reviews['replyContent'] = combined_reviews['replyContent'].apply(lambda x: json.dumps(x) if isinstance(x, dict) else x)
 
-print(combined_reviews.head())
+
 
 ocbcapple_dropped_renamed.score.unique() # data cleaning issue
 
-combined_reviews.to_csv("combined_reviews.csv")
+#combined_reviews.to_csv("combined_reviews.csv")
 
 
 #For finetuning:

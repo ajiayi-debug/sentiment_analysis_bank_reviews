@@ -1,8 +1,8 @@
 {
     "database": {
-        "host": "ec2-52-77-216-94.ap-southeast-1.compute.amazonaws.com",
+        "host": "127.0.0.1",
         "user": "root",
-        "password": "SQL12345",
+        "password": "MYSQL12345",
         "database": "database",
         "port": 3306
     }
