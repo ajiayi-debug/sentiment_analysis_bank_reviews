@@ -446,7 +446,7 @@ def summarise_sentiment(reviews): #havent test this fn
   - pos_keywords: dictionary containing positive keywords, sorted descending
   '''
 
-  model = 'distilbert/distilbert-base-uncased-finetuned-sst-2-english' # maybe need to streamline this && change to trained model
+  model = 'ajiayi/finetuning-sentiment-model-bank_reviews-otherbank' # maybe need to streamline this && change to trained model
   sentiment_pipeline = pipeline("sentiment-analysis", model=model)
   ns_score = 0
 
