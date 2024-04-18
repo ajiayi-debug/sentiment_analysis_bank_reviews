@@ -3,7 +3,7 @@ version: '3.8'
 services:
   mysql:
     image: ajiayidebug/dsa3101:v1
-    container_name: database
+    container_name: database_docker
     environment:
       MYSQL_ROOT_PASSWORD: "MYSQL12345"
       MYSQL_ROOT_HOST: "root"
