@@ -1,5 +1,5 @@
 from flask import Flask, jsonify
-from flask_mysqldb import MySQL
+#from flask_mysqldb import MySQL
 import json
 import mysql.connector
 from flask_cors import CORS
