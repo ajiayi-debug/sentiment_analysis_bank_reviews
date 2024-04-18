@@ -1,8 +1,15 @@
-version: '3.4'
+version: '3.8'
 
 services:
-  dsa3101group19:
-    image: dsa3101group19
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+  mysql:
+    image: ajiayidebug/dsa3101:v1
+    container_name: database
+    environment:
+      MYSQL_ROOT_PASSWORD: "MYSQL12345"
+      MYSQL_ROOT_HOST: "root"
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./data:/var/lib/mysql
+      - ./all_databases.sql:/docker-entrypoint-initdb.d/all_databases.sql
+    restart: unless-stopped
