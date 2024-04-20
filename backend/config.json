@@ -4,6 +4,6 @@
         "user": "root",
         "password": "MYSQL12345",
         "database": "database",
-        "port": 3306
+        "port": 3307
     }
 }
