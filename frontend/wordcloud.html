@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GXS Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-tag-cloud.min.js"></script>
+</head>
+<body>
+  <div class="grid-container">
+
+    <!-- Header -->
+    <header class="header">
+      <a href="https://help.gxs.com.sg/"><img src="logo.png" alt="Logo"></a>
+    </header>
+
+<!-- Sidebar -->
+<aside id="sidebar">
+    <div class="sidebar-title">
+      <div class="sidebar-brand">
+        <span class="material-icons-outlined">category</span> FEATURES
+      </div>
+      <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+    </div>
+  
+    <ul class="sidebar-list">
+        <li class="sidebar-list-item">    
+         <a href="index.html" >
+            <span class="material-icons-outlined">dashboard</span> Dashboard
+         </a>
+        </li>
+  
+        <li class="sidebar-list-item">
+          <a href="wordcloud.html" >
+          <span class="material-icons-outlined">people</span>  Word Cloud
+          </a>
+        </li>
+  
+        <li class="sidebar-list-item">
+          <a href="customer_reviews.html" >
+          <span class="material-icons-outlined">people</span> Customer Data
+          </a>
+        </li>
+        
+        <li class="sidebar-list-item">
+          <a href="settings.html" >
+            <span class="material-icons-outlined">settings</span> Settings
+          </a>
+        </li>
+      </ul>
+  </aside>
+  
+
+      <!-- Main Title -->
+      <div class="main-title">
+      </div>
+      <!-- Word Cloud -->
+      <div class="charts-card">
+      <h2 class="chart-title">Word Cloud</h2>
+      <div class="word-cloud" id="word-cloud"></div>
+        </div>
+      </div>      
+    </main>
+  </div>
+
+</body>
+  <!-- Scripts -->
+  <!-- ApexCharts -->
+  <script src="wordcloud.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wordcloud2.js/3.0.0/wordcloud2.min.js"></script>
+  <script src="scripts.js"></script>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+
+</body>
+</html>

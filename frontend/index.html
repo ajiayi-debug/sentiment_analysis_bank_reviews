@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GXS Dashboard</title>
   <link rel="stylesheet" href="styles.css">
-  <!-- Montserrat Font -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
 </head>
 <body>
   <div class="grid-container">
@@ -17,7 +16,6 @@
     <header class="header">
       <a href="https://help.gxs.com.sg/"><img src="logo.png" alt="Logo"></a>
     </header>
-    <!-- End Header -->
 
 <!-- Sidebar -->
 <aside id="sidebar">
@@ -29,23 +27,31 @@
     </div>
   
     <ul class="sidebar-list">
-      <li class="sidebar-list-item">
-        <a href="#" target="_blank">
+      <li class="sidebar-list-item">    
+       <a href="index.html" >
           <span class="material-icons-outlined">dashboard</span> Dashboard
+       </a>
+      </li>
+
+      <li class="sidebar-list-item">
+        <a href="wordcloud.html" >
+        <span class="material-icons-outlined">people</span>  Word Cloud
         </a>
       </li>
-      <li class="sidebar-list-item" onclick="openCustomerDataPage()">
+
+      <li class="sidebar-list-item">
+        <a href="customer_reviews.html" >
         <span class="material-icons-outlined">people</span> Customer Data
+        </a>
       </li>
       
       <li class="sidebar-list-item">
-        <a href="settings.html" target="_blank">
+        <a href="settings.html" >
           <span class="material-icons-outlined">settings</span> Settings
         </a>
       </li>
     </ul>
   </aside>
-  <!-- End Sidebar -->
   
 
     <!-- Main -->
@@ -55,59 +61,50 @@
       <div class="main-title">
         <h2>DASHBOARD</h2>
       </div>
-      <!-- End Main Title -->
 
-      <!-- Main Cards -->
       <div class="main-cards">
 
-        <!-- Main Cards Removed -->
+        <div class="card">
+          <div class="card-inner">
+            <h3>REVIEWS</h3>
+          </div>
+          <h1>331</h1>
+        </div>
+        
 
-      </div>
-      <!-- End Main Cards -->
+        <div class="card">
+          <div class="card-inner">
+            <h3>NET SENTIMENT SCORE</h3>
+          </div>
+          <h1>-51</h1>
+        </div>
 
-      <!-- Charts -->
+        </div>
+
+
+      <!-- Charts -->    
       <div class="charts">
+        <!-- Chart 3 -->
 
-        <!-- Chart 1 -->
         <div class="charts-card">
-          <h2 class="chart-title">Top 5 Sentiment Words</h2>
-          <div id="bar-chart"></div>
+          <h2 class="chart-title">Customer Sentiment </h2>
+          <canvas id="bar-chart"></canvas>
         </div>
-
-        <!-- Chart 2 -->
-        <div class="charts-card">
-          <h2 class="chart-title">Customer Sentiment 2023</h2>
-          <div id="area-chart"></div>
-        </div>
-
+        <!-- Chart 4 -->
         <div class="charts-card">
             <h2 class="chart-title">Customer Reviews</h2>
             <canvas id="pie-chart"></canvas>
           </div>
-
-         <!-- Chart 4 -->
-        <div class="charts-card">
-          <h2 class="chart-title">Word Cloud</h2>
-          <div id="wordCloud"></div>
-
         </div>
-
-      </div>
-      
+      </div>      
     </main>
-
   </div>
 
   <!-- Scripts -->
-  <!-- ApexCharts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.5/apexcharts.min.js"></script>
-  <!-- Custom JS -->
-  <script src="js/scripts.js"></script>
-  <!-- Your Chart.js script -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
-  <!-- Your scripts.js -->
-  <script src="scripts.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/wordcloud2.js/3.0.0/wordcloud2.min.js"></script>
-  <script src="data.js"></script>
+  <script src="dashboard.js"></script>
+  
+
 </body>
 </html>

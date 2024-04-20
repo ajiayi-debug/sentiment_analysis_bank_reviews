@@ -8,7 +8,7 @@ services:
       MYSQL_ROOT_PASSWORD: "MYSQL12345"
       MYSQL_ROOT_HOST: "root"
     ports:
-      - "3306:3306"
+      - "3307:3306" #the number in front is the one u insert in the mysql workbench. in this case it is 3307
     volumes:
       - ./data:/var/lib/mysql
       - ./all_databases.sql:/docker-entrypoint-initdb.d/all_databases.sql

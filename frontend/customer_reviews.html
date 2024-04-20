@@ -43,16 +43,26 @@
       </div>
 
       <ul class="sidebar-list">
-        <li class="sidebar-list-item">
-          <a href="#" target="_blank">
+        <li class="sidebar-list-item">    
+         <a href="index.html" >
             <span class="material-icons-outlined">dashboard</span> Dashboard
+         </a>
+        </li>
+  
+        <li class="sidebar-list-item">
+          <a href="wordcloud.html" >
+          <span class="material-icons-outlined">people</span>  Word Cloud
           </a>
         </li>
-        <li class="sidebar-list-item" onclick="openCustomerDataPage()">
-            <span class="material-icons-outlined">people</span> Customer Data
-          </li>
+  
         <li class="sidebar-list-item">
-          <a href="settings.html" target="_blank">
+          <a href="customer_reviews.html" >
+          <span class="material-icons-outlined">people</span> Customer Data
+          </a>
+        </li>
+        
+        <li class="sidebar-list-item">
+          <a href="settings.html" >
             <span class="material-icons-outlined">settings</span> Settings
           </a>
         </li>
@@ -64,8 +74,31 @@
       <div class="main-title">
         <h2>CUSTOMER REVIEWS</h2>
       </div>
-      <div>
+      <div class="filter-controls">
+        <div class="filter-bar">
+          <div class="filter-option filter-label">Filter by:</div>
+          <div class="filter-option" data-filter="content">
+            <div>Keyword</div>
+            <input type="text" id="keywordInput" placeholder="Enter keyword...">
+            <button id="clearKeywordButton">Clear</button>
+          </div>
+          <div class="filter-option" data-filter="score">
+            <div>Score</div>
+            <div id="scoreButtons">
+              <button class="scoreButton" data-score="1">1</button>
+              <button class="scoreButton" data-score="2">2</button>
+              <button class="scoreButton" data-score="3">3</button>
+              <button class="scoreButton" data-score="4">4</button>
+              <button class="scoreButton" data-score="5">5</button>
+            </div>
+          </div>
+          <div class="filter-option" data-filter="date">
+            <div>Date Range</div>
+            <input type="date" id="startDateInput"> to <input type="date" id="endDateInput">
+          </div>
+        </div>
       </div>
+
       <div class="customer-reviews">
         <!-- Customer reviews will be populated dynamically from JavaScript -->
         <table id="csvTable">
@@ -75,6 +108,8 @@
                     <th>Content</th>
                     <th>Date</th>
                     <th>Score Sentiment</th>
+                    <th>Keywords</th>
+                    <th>Generated Reply</th>
                 </tr>
             </thead>
             <tbody>
@@ -86,5 +121,7 @@
   </div>
 
   <script src="customer_review.js"></script>
+  <script src="scripts.js"></script>
+
 </body>
 </html>
