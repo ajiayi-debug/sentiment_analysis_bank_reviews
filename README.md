@@ -27,3 +27,5 @@ As an extension to our project, we wanted to create a language model that was ab
 ## Running the database
 Use `docker-compose up` to pull mysql image and create container. Take note that port may need to be changed depending on whether your machine is already using the port. Refer to (docker-compose.yml) on how to change port. Make sure to change the port accordingly in [config.json](config.json) as well as in MySQL workbench if you would like to open the database in MySQL workbench.
 
+To update the database, run `docker exec database_docker sh -c 'exec mysqldump -u root --password=MYSQL12345 --all-databases' > all_databases.sql`
+
