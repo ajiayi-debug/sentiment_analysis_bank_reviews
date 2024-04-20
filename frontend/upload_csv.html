@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GXS Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  <style>
+    .upload-container {
+      display: inline;
+      text-align: center;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-left: 20px;
+    }
+    .upload-container .file-upload-label {
+      cursor: pointer;
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 5px;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+    th {
+        background-color: #0066cc; 
+        color: white; 
+    }
+    .custom-file-upload {
+      cursor: pointer;
+      background-color: #490c56;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+    }
+    .custom-file-upload:hover {
+      background-color: #7313bd;
+    }
+    #uploadButton {
+      cursor: pointer;
+      background-color: #008CBA;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+    }
+    #uploadButton:hover {
+      background-color: #149ecc;
+    }
+    #selectedFileName {
+      padding: 10px 10px;
+    }
+    .download-template-link {
+      display: inline-block;
+      padding: 8px 20px;
+      background-color: #008CBA;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+    .download-template-link:hover {
+      background-color: #149ecc;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="grid-container">
+
+    <!-- Header -->
+    <header class="header">
+      <a href="https://help.gxs.com.sg/"><img src="logo.png" alt="Logo"></a>
+    </header>
+
+    <!-- Sidebar -->
+    <aside id="sidebar">
+        <div class="sidebar-title">
+          <div class="sidebar-brand">
+            <span class="material-icons-outlined">category</span> FEATURES
+          </div>
+          <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+        </div>
+  
+      <ul class="sidebar-list">
+        <li class="sidebar-list-item">    
+          <a href="index.html" >
+              <span class="material-icons-outlined">dashboard</span> Dashboard
+          </a>
+        </li>
+    
+        <li class="sidebar-list-item">
+          <a href="wordcloud.html" >
+          <span class="material-icons-outlined">people</span>  Word Cloud
+          </a>
+        </li>
+    
+        <li class="sidebar-list-item">
+          <a href="customer_reviews.html" >
+          <span class="material-icons-outlined">people</span> Customer Data
+          </a>
+        </li>
+
+        <li class="sidebar-list-item">
+          <a href="upload_csv.html" >
+          <span class="material-icons-outlined">upload_file</span> Upload File
+          </a>
+        </li>
+
+        <li class="sidebar-list-item">
+          <a href="settings.html" >
+            <span class="material-icons-outlined">settings</span> Settings
+          </a>
+        </li>
+      </ul>
+    </aside>
+  
+    <div class="main-container">
+      <div class="main-title">
+        <h2>UPLOAD FILE</h2>
+      </div>
+      <p class="format-instructions">
+          <strong>File Format:</strong><br><br>
+          <table id="csvTable">
+            <thead>
+              <tr>
+                <th>columns:</th>
+                <td>[empty]</td>
+                <td>replyContent</td>
+                <td>score</td>
+                <td>content</td>
+                <td>thumbsUpCount</td>
+                <td>date</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>description:</th>
+                <td>index</td>
+                <td>company's reply to the review</td>
+                <td>rating given in review</td>
+                <td>review content</td>
+                <td>number of thumbs up given to review</td>
+                <td>date of review</td>
+              </tr>
+              <tr>
+                <th>example value:</th>
+                <td>0, 1, 2, ...</td>
+                <td>Hey Andrew, Thank you for...</td>
+                <td>1 - 5</td>
+                <td>This app is...</td>
+                <td>15</td>
+                <td>16/03/2016 04:40:06</td>
+              </tr>
+            </tbody>
+          </table>
+          <a href="template.csv" download class="download-template-link">Download Template</a>
+        </p>
+
+      <input type="file" id="csvFileInput" accept=".csv" style="display: none;" onchange="displayFileName()">
+      <label for="csvFileInput" class="custom-file-upload">Choose CSV File</label>
+      <span id="selectedFileName"></span>
+      <button id="uploadButton" onclick="uploadCSV()">Upload</button>
+
+    </div>
+
+  </div>      
+
+  <script src="upload_csv.js"></script>
+</body>
+</html>
