@@ -9,7 +9,7 @@ This project aims to provide our organisation with an easy and methodical way of
 Data scraping for this project was carried out in March 2024. Reviews from various banking apps on the Apple Store and Google Play Store were scraped, and relevant information such as ratings, comments, replies, and thumbs up counts were retained. Other information that contained personal information or were not useful were discarded. The code used for data scraping can be found in [dataset.py](dataset.py). The final dataset was subsequently uploaded to an SQL database for easier access and retrieval.
 
 ## Model Description
-The code for model training and testing can be found [here](modeltrainingandtests.py).
+The code for model training and testing can be found [model_training_and_tests.ipynb](model_training_and_tests.ipynb).
 
 ### Sentiment Analysis
 We performed sentiment analysis using a fine-tuned HuggingFace model. For the labels, we used the star ratings of the reviews collected, classifying reviews with more than 3 stars as 'positive' and the rest (≤3 stars) as 'negative'. The fine-tuned model can be found [here](https://huggingface.co/ajiayi/finetuning-sentiment-model-bank_reviews-otherbank)
@@ -22,8 +22,8 @@ We used a net sentiment figure as a summary of overall sentiment. The net sentim
 To summarise overall intent, two dictionaries containing intent keywords associated with positive and negative sentiment reviews respectively were created. These dictionaries were then sorted in descending frequency of keywords.
 
 ## GPT
-As an extension to our project, we wanted to create a language model that was able to generate replies to reviews. For this, the causal language model from HuggingFace was used, with the baseline model 'openai-community/gpt2'. The code for the finetuning of the GPT can be found [here](gpt_finetune_causallm.ipynb).
+As an extension to our project, we wanted to create a language model that was able to generate replies to reviews. For this, the causal language model from HuggingFace was used, with the baseline model 'openai-community/gpt2'. The code for the finetuning of the GPT can be found [gpt_finetune_causallm.ipynb](gpt_finetune_causallm.ipynb).
 
 ## Running the database
-Use `docker-compose up` to pull mysql image and create container. Take note that port may need to be changed depending on whether your machine is already using the port. Refer to (docker-compose.yml) on how to change port. Make sure to change the port accordingly in [here](config.json) as well as in MySQL workbench if you would like to open the database in MySQL workbench.
+Use `docker-compose up` to pull mysql image and create container. Take note that port may need to be changed depending on whether your machine is already using the port. Refer to (docker-compose.yml) on how to change port. Make sure to change the port accordingly in [config.json](config.json) as well as in MySQL workbench if you would like to open the database in MySQL workbench.
 
