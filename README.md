@@ -25,7 +25,9 @@ To summarise overall intent, two dictionaries containing intent keywords associa
 As an extension to our project, we wanted to create a language model that was able to generate replies to reviews. For this, the causal language model from HuggingFace was used, with the baseline model 'openai-community/gpt2'. The code for the finetuning of the GPT can be found [gpt_finetune_causallm.ipynb](backend/gpt_finetune_causallm.ipynb).
 
 ## Running the database
-Use `docker-compose up` to pull mysql image and create container. Take note that port may need to be changed depending on whether your machine is already using the port. Refer to (docker-compose.yml) on how to change port. Make sure to change the port accordingly in [config.json](config.json) as well as in MySQL workbench if you would like to open the database in MySQL workbench.
+Use `docker-compose up` to pull mysql image and create container. Take note that port may need to be changed depending on whether your machine is already using the port. Refer to (docker-compose.yml) on how to change port. Make sure to change the port accordingly in the config file in both backend [config.json(backend)](backend/config.json) and in the main file [config.json(main)](config.json) as well as in MySQL workbench if you would like to open the database in MySQL workbench. 
+
+To download the data (if you need to get a 'restart' in the database due to accidental deletion etc), run `docker exec -i database_docker sh -c 'exec mysql -u root --password=MYSQL12345' < all_databases.sql`
 
 To update the database, run `docker exec database_docker sh -c 'exec mysqldump -u root --password=MYSQL12345 --all-databases' > all_databases.sql`
 

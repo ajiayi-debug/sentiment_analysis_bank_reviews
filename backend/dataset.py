@@ -1,9 +1,7 @@
-#pip install app_store_scraper
 from app_store_scraper import AppStore
 import pandas as pd
 import numpy as np
 import json
-#pip install google_play_scraper
 from google_play_scraper import app
 from google_play_scraper import Sort, reviews_all
 import mysql.connector as mysql
