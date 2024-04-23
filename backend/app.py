@@ -6,6 +6,7 @@ from werkzeug.utils import secure_filename
 import os
 import pandas as pd
 from sqlalchemy import create_engine
+import subprocess
 
 app = Flask(__name__)
 CORS(app)
@@ -109,7 +110,30 @@ def get_summary():
         return jsonify({"error": str(e)}), 500
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+### run script on new data
     
+@app.route("/new_data", methods=['GET'])
+def new_data():
+    try:
+        result = subprocess.run(
+            ['python3', 'newdata.py'],  # CHANGE PYTHON
+            check=True,  
+            capture_output=True,  
+            text=True  
+        )
+
+        return jsonify({
+            "message": "File processed successfully!",
+            "script_output": result.stdout  
+        }), 200
+
+    except subprocess.CalledProcessError as e:
+        return jsonify({
+            "error": "Processing failed",
+            "details": e.stderr  
+        }), 500
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3000, debug=True)
 

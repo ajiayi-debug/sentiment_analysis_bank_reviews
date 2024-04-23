@@ -45,12 +45,13 @@ function filter(data) {
     }
 
     if (replyKeywordInput) {
-      passesFilter = passesFilter && filterByKeyword([entry], replyKeywordInput).length > 0;
+      passesFilter = passesFilter && filterByReplyKeyword([entry], replyKeywordInput).length > 0;
     }
 
     // Score filter
     if (selectedScores.length > 0 && !selectedScores.includes(entry.score)) {
-      passesFilter = false;
+      const entryScore = String(entry.score); 
+      passesFilter = passesFilter && selectedScores.includes(entryScore);
     }
 
     // Date filter
@@ -58,6 +59,7 @@ function filter(data) {
       const entryDate = new Date(entry.date);
       const startDate = new Date(startDateInput);
       const endDate = new Date(endDateInput);
+      endDate.setDate(endDate.getDate() + 1);
 
       passesFilter = passesFilter && entryDate >= startDate && entryDate <= endDate;
     }
@@ -68,6 +70,12 @@ function filter(data) {
 
 // Function to filter data by keywords
 function filterByKeyword(data, keyword) {
+  const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const regex = new RegExp(escapedKeyword, "i");
+  return data.filter((entry) => regex.test(entry.keywords));
+}
+
+function filterByReplyKeyword(data, keyword) {
   const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const regex = new RegExp(escapedKeyword, "i");
   return data.filter((entry) => regex.test(entry.generatedReply));

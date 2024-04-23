@@ -18,10 +18,12 @@ function uploadCSV() {
   }  
 
   const file = fileInput.files[0];
-
   const formData = new FormData();
   formData.append('csvFile', file);
 
+  // Show the loading indicator
+  // const loadingIndicator = document.getElementById('loadingIndicator');
+  // loadingIndicator.style.display = 'block';
 
   fetch('http://localhost:3000/upload', {
       method: 'POST',
@@ -34,10 +36,26 @@ function uploadCSV() {
       return response.json();
   })
   .then(data => {
-      console.log('File uploaded successfully:', data);
-      // You can do something with the response from the backend here
+      alert('File uploaded successfully:', data);
+
+      return fetch('http://localhost:3000/new_data', { method: 'GET' });
+  })
+  .then(data => {
+      if (data.status === 200) {
+          console.log('Data processed successfully:', data);
+          alert('Data processed successfully!');
+      } else {
+          console.error('Data processing failed:', data);
+          alert('Data processing failed.');
+      }
   })
   .catch(error => {
-      console.error('There was a problem with the file upload:', error);
-  });
+      console.error('There was a problem:', error);
+      alert('An error occurred during the process.');
+  })
+  // .finally(() => {
+  //     // Hide the loading indicator regardless of success or error
+  //     loadingIndicator.style.display = 'none';
+  // });
 }
+

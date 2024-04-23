@@ -1,6 +1,8 @@
 // word cloud
-anychart.onDocumentReady(function() {
+async function initWordCloud() {
     //sample data
+    const scores = await fetchSummary();
+    
     const words = [
         { text: "easy", size: 21 ,category: "positive"},
         { text: "unable", size: 17 ,category: "negative" },
@@ -13,7 +15,7 @@ anychart.onDocumentReady(function() {
         { text: "stuck", size: 4, category: "negative"}
   
     ];
-    const chart = anychart.tagCloud(words.map(word => ({
+    const chart = anychart.tagCloud(scores.map(word => ({
       x: word.text,
       value: word.size,
       category: word.category
@@ -34,11 +36,36 @@ anychart.onDocumentReady(function() {
   
     // Draw the chart
     chart.draw();
+}
+
+async function fetchSummary() {
+  const response = await fetch('http://localhost:3000/summary');
+  const data = await response.json();
+
+  const wordMap = {};
+
+  data.forEach((item) => {
+    const { keyword, count, sentiment } = item;
+    const keywordList = keyword.split(" ");
+
+    keywordList.forEach((word) => {
+      if (word.trim() !== "") {
+        const cleanedWord = word.trim().toLowerCase(); 
+
+        if (wordMap[cleanedWord]) {
+          wordMap[cleanedWord].size += count; 
+        } else {
+          wordMap[cleanedWord] = { text: cleanedWord, size: count, category: sentiment };
+        }
+      }
+    });
   });
-  
 
-  
+  const scores = Object.values(wordMap);
 
+  return scores;
+}
 
-
-  
+anychart.onDocumentReady(() => {
+  initWordCloud(); 
+});
