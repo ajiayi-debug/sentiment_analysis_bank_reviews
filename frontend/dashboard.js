@@ -1,25 +1,46 @@
 let parsedData;
 
 // Fetch CSV data
-fetch('customer.csv')
-    .then(response => response.text())
+fetch('http://localhost:3000/customer_review')
+    .then(response => response.json())
     .then(data => {
-        // Parse CSV data
-        const rows = data.trim().split('\n');
-        const headers = rows.shift().split(',');
-        parsedData = rows.map(row => {
-            const values = row.split(',');
-            return headers.reduce((object, header, index) => {
-                object[header.trim()] = values[index].trim();
-                return object;
-            }, {});
-        });
+        const reviews = data.map((item) => {
+            const { score, content, date, sentiment, keywords, generatedReply } = item;
+    
+            const formattedKeywords = keywords ? keywords.split(" ").join(", ") : "";
+            const dateObj = new Date(date);
+
+            const formattedDate = `${dateObj.getFullYear()}-${String(dateObj.getMonth() + 1).padStart(2, "0")}`;
+
+            return {
+              score,
+              content,
+              date : formattedDate,
+              sentiment,
+              keywords: formattedKeywords,
+              generatedReply,
+            };
+          });
 
         // Process initial data for charts
-        updateCharts(parsedData);
+        updateCharts(reviews);
+        updateCount(reviews.length);
     })
     .catch(error => console.error('Error fetching CSV:', error));
 
+fetch('http://localhost:3000/summary')
+    .then(response => response.json())
+    .then(data => {
+        const scores = data.map((item) => {
+            const { netSentiment } = item;
+
+            return {netSentiment};
+        });
+        
+        const score = scores.length > 1 ? scores[0].netSentiment : 0;
+        updateNetSentimentScore(score);
+    })
+    .catch(error => console.error('Error fetching CSV:', error));
 
 // Function to update charts with data
 function updateCharts(data) {
@@ -119,4 +140,12 @@ function updateCharts(data) {
     });
 }
 
+function updateCount(count){
+    const element = document.querySelector(".review-count"); 
+    element.textContent = count;
+}
 
+function updateNetSentimentScore(score){
+    const element = document.querySelector(".sentiment-score"); 
+    element.textContent = parseFloat(score.toFixed(2));;
+}
