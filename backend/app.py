@@ -117,7 +117,7 @@ def get_summary():
 def new_data():
     try:
         result = subprocess.run(
-            ['python3', 'newdata.py'],  # CHANGE PYTHON
+            ['python', 'backend/newdata.py'],  # CHANGE PYTHON
             check=True,  
             capture_output=True,  
             text=True  

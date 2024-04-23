@@ -1,6 +1,5 @@
 import json
 import pandas as pd
-import mysql.connector
 from sqlalchemy import create_engine
 from transformers import pipeline
 from keybert import KeyBERT
@@ -18,7 +17,7 @@ def get_sqlalchemy_engine(db_config):
     user = db_config['user']
     password = db_config['password']
     host = db_config['host']
-    port = db_config.get('port', 3306)  # Default to MySQL port 3306
+    port = db_config.get('port',3306)  # Default to MySQL port 3306
     database = db_config['database']
     conn_string = f"mysql+mysqlconnector://{user}:{password}@{host}:{port}/{database}"
     return create_engine(conn_string)

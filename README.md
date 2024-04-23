@@ -31,3 +31,5 @@ To download the data (if you need to get a 'restart' in the database due to acci
 
 To update the database, run `docker exec database_docker sh -c 'exec mysqldump -u root --password=MYSQL12345 --all-databases' > all_databases.sql`
 
+## Installing the packages
+To install all dependencies, run `pip install -r requirements.txt`
