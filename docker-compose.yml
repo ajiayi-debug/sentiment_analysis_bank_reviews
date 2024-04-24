@@ -8,8 +8,22 @@ services:
       MYSQL_ROOT_PASSWORD: "MYSQL12345"
       MYSQL_ROOT_HOST: "root"
     ports:
-      - "3307:3306" #the number in front is the one u insert in the mysql workbench. in this case it is 3307
+      - "3307:3306"  # port will be 3307 in MySQL
     volumes:
       - ./data:/var/lib/mysql
       - ./all_databases.sql:/docker-entrypoint-initdb.d/all_databases.sql
     restart: unless-stopped
+
+  app:
+    build: .  
+    container_name: DSA3101_19_app
+    ports:
+      - "3000:3000"  
+    depends_on:
+      - mysql 
+    environment:
+      - FLASK_ENV=deployment  # Environment variable for Flask
+      - DATABASE_HOST=mysql
+      - CONFIG_PATH=/DSA3101_group19/config.json
+    restart: unless-stopped
+
