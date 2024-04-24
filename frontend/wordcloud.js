@@ -23,7 +23,7 @@ async function initWordCloud() {
   
     let palette = anychart.palettes.distinctColors();
     palette.items(
-        ["#00FF00", "#ff0000", "#ffffff"]
+        ["#ff0000", "#00FF00", "#ffffff"]
     );
   
     // Set chart container
