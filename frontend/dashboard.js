@@ -92,8 +92,8 @@ function updateCharts(data) {
             datasets: sentimentLabels.map(label => ({
                 label: label,
                 data: sortedDates.map(date => dateSentimentData[date][label]),
-                backgroundColor: label === 'POSITIVE' ? 'rgba(255, 99, 132, 0.5)' : 'rgba(54, 162, 235, 0.5)',
-                borderColor: label === 'POSITIVE' ? 'rgba(255, 99, 132, 1)' : 'rgba(54, 162, 235, 1)',
+                backgroundColor: label === 'NEGATIVE' ? 'rgba(255, 99, 132, 0.5)' : 'rgba(54, 162, 235, 0.5)',
+                borderColor: label === 'NEGATIVE' ? 'rgba(255, 99, 132, 1)' : 'rgba(54, 162, 235, 1)',
                 borderWidth: 1
             }))
         },
@@ -128,12 +128,11 @@ function updateCharts(data) {
             datasets: [{
                 data: Object.values(scoreData),
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.5)',
-                    'rgba(54, 162, 235, 0.5)',
-                    'rgba(255, 206, 86, 0.5)',
-                    'rgba(75, 192, 192, 0.5)',
-                    'rgba(153, 102, 255, 0.5)',
-                    'rgba(255, 159, 64, 0.5)'
+                    'rgba(255, 9, 9, 0.9)',
+                    'rgba(255, 78, 17, 1)',
+                    'rgba(255, 142, 21, 1)',
+                    'rgba(250, 183, 51, 1)',
+                    'rgba(172, 179, 52, 1)',
                 ]
             }]
         }
