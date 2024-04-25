@@ -75,8 +75,7 @@ def upload_file():
     df = pd.read_csv(file.stream)
 
     # Insert the DataFrame into the MySQL database
-    # Replace 'your_table_name' with your actual table name
-    df.to_sql('new_data', con=engine, if_exists='append', index=False)
+    df.to_sql('new_data', con=engine, if_exists='replace', index=False)
     
     return jsonify({'message': 'File processed and data inserted into MySQL'}), 200
 
