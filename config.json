@@ -1,6 +1,6 @@
 {
     "database": {
-        "host": "mysql",
+        "host": "mysql", #points to mysql image
         "user": "root",
         "password": "MYSQL12345",
         "database": "database",
