@@ -92,33 +92,33 @@ To add new data, format your data according to the template downloadable from up
 | tqdm                     | 4.66.2  |
 | werkzeug                 | 2.2.2   |
 
-##Instructions on Running Models & Testing code
+## Instructions on Running Models & Testing code
 
-###Model Experiments
+### Model Experiments
 
 Model training and testing can be done by running model_training_and_test.ipynb. It is recommended for users to connect to a GPU for faster computational times. This does not affect the application but shows users the experiments we have done as well as the results obtained. finetune_bert.ipynb and gpt_finetune_causallm.ipynb are both created in the process of fine-tuning the models. It is advised to not run them again, but users can use their own hugging face API to fine tune other models with the same code structure and data structure.
 
-###Code Testing
+### Code Testing
 
 When `docker-compose up` is run on the terminal, the Flask app app.py starts, starting the server that connects the database called by the backend to the frontend through api calls. Users just need to open any of the html files with a live server by Ritwick Dey (can be installed as an extension in Visual Studio Code), by dragging and dropping any .html file into chrome or by double clicking any of the .html files. When the server is up, customer reviews should show a table while dashboard and word cloud should show some elements. Upload web page should allow users to upload files with a message file uploaded successfully followed by another message that tells users to wait patiently for the results and that they can get an estimate of how long it takes by observing how long localhost:3000/new_data takes to finish loading. If users have uploaded data, they can filter for their updated data by searching for null in generated reply content in customer review webpage (new data has no generated reply. It is instead replaced with the null value to fit sentiment_data better). 
 
 If users want to change the whole set of sentiment_data and summary, users will need to re-run dataset.py to webscrape, clean and store the data as well as scrape_all.ipynb to get a new set of sentiment_data and summary data. Users need to remember to update all_databases.sql in order for other users to obtain the data. Users can do so by running `docker exec database_docker sh -c 'exec mysqldump -u root --password=MYSQL12345 --all-databases' > all_databases.sql` . 
 
 To open and run the database on MySQL workbench, set up the config as shown below with password MYSQL12345 (Figure 1).
-
+(images/Screenshot 2024-04-18 184823.png)
 Figure 1: MySQL configuration
 
 
 
-3.4 | Possible Issues
+## Possible Issues
 
-Port
+### Port
 User’s port 3307 may already be in use. In this case, the user needs to change the port in the docker-compose.yml to another port. Make sure to change the port number in MySQL workbench accordingly as well.
 
-Firewall
+### Firewall
 User’s firewall extensions may block Flask from starting. Make sure to disable the firewall or allow localhost:3000 in order for Flask to work.
 
-HuggingFace
+### HuggingFace
 HuggingFace might be down which affects DistilBERT fine-tuned model as the application is unable to call the fine-tuned model API. Users will be able to notice this error when the loaded localhost:3000/new_data shows an error related to being unable to call from HuggingFace. In this case, try again when HuggingFace comes back online. 
 
 
