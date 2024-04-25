@@ -6,7 +6,7 @@ In today’s digital era, diverse channels such as social media platforms, email
 This project aims to provide our organisation with an easy and methodical way of analysing customer feedback, and in so doing, enhance customer understanding, improve service quality, and enable data-driven decision-making. To overcome the shortfalls of manual sorting which is time-consuming and error-prone, this project leverages NLP techniques to gauge customer sentiment, identify trends, and highlight areas for improvements.
 
 ## Data Scraping
-Data scraping for this project was first carried out in March 2024 and updated in April 2024. Reviews from various banking apps on the Apple Store and Google Play Store were scraped, and relevant information such as ratings, comments, replies, and thumbs up counts were retained. Other information that contained personal information or were not useful were discarded. The code used for data scraping can be found in [dataset.py](backend/dataset.py). The final dataset was subsequently uploaded to an SQL database for easier access and retrieval.
+Data scraping for this project was first carried out in March 2024 and updated in April 2024. Reviews from various banking apps on the Apple Store and Google Play Store were scraped, and relevant information such as ratings, comments, replies, and thumbs up counts were retained. Other information that contained personal information or were not useful were discarded. The code used for data scraping can be found in [dataset.py](backend/dataset.py). The final dataset was subsequently uploaded to a MySQL database for easier access and retrieval.
 
 ## Model Description
 The code for model training and testing can be found [model_training_and_test.ipynb](backend/model_training_and_test.ipynb).
