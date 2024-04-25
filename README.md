@@ -34,7 +34,7 @@ To update the database, run `docker exec database_docker sh -c 'exec mysqldump -
 To open the html frontend webpage, double click the .html file or if in VS code, use the live server extension by Ritwick Dey.
 
 ## Using the application
-To add new data, format your data according to the template downloadable from upload page. Afterwards, upload your data and wait patiently. You can open another tab with address localhost:3000/new_data and press the refresh button after you upload your data. When the tab reloads successfully and you get an output of 'File uploaded successfully', the data has finished processing and the data has been updated into the database. The new data will add on to the existing data that frontend uses. You can filter for the new data by heading to customer reviews and searching for null in Generated reply content as GPT-2 was not run on the new data due to it being in it's beta phase. 
+To add new data, format your data according to the template downloadable from upload page. Make sure that your date is in date time format. CSV files will auto save in a non datetime format so don't be fooled by the CSV template it is in datetime format! Afterwards, upload your data and wait patiently. You can open another tab with address localhost:3000/new_data and press the refresh button after you upload your data. When the tab reloads successfully and you get an output of 'File uploaded successfully', the data has finished processing and the data has been updated into the database. The new data will add on to the existing data that frontend uses. You can filter for the new data by heading to customer reviews and searching for null in Generated reply content as GPT-2 was not run on the new data due to it being in it's beta phase. 
 
 ## Repository Structure
 ### Backend
@@ -120,6 +120,13 @@ User’s firewall extensions may block Flask from starting. Make sure to disable
 
 ### HuggingFace
 HuggingFace might be down which affects DistilBERT fine-tuned model and keyBERT as the application is unable to call the models' API. Users will be able to notice this error when the loaded localhost:3000/new_data shows an error related to being unable to call from HuggingFace. In this case, try again when HuggingFace comes back online. 
+
+### CSV template
+The CSV template in upload page auto saves in a non datetime format to the users, making it misleading for users. However, when uploaded, it still works as it is in datetime format. We tried to mitigate this issue by highlighting to users that the date must be in datetime format else the database will not accept it.
+
+### MySQL connectivity issues
+Sometimes when new data gets added too many times to the application, the MySQL database may fail to connect to newdata.py properly. Some form of errors may appear such as database.summary not existing when it does in the database. Users need to try to upload the data again (or in this case upload another set of new data since sentiment_data already contains the new data)  and make sure that the flask server is stable.
+
 
 
 
