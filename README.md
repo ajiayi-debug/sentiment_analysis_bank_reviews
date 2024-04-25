@@ -36,7 +36,7 @@ To open the html frontend webpage, double click the .html file or if in VS code,
 
 ## Using the application
 To add new data, format your data according to the template downloadable from upload page. Make sure that your date is in date time format. CSV files will auto save in a non datetime format so don't be fooled by the CSV template it is in datetime format! Afterwards, upload your data and wait patiently. You can open another tab with address localhost:3000/new_data and press the refresh button after you upload your data. When the tab reloads successfully and you get an output of 'File uploaded successfully', the data has finished processing and the data has been updated into the database. The new data will add on to the existing data that frontend uses. You can filter for the new data by heading to customer reviews and searching for null in Generated reply content as GPT-2 was not run on the new data due to it being in it's beta phase. 
-After every upload, remember to head to MySQL workbench (or any other ways to connect to the database) and drop new_data to prevent duplicates when users try to upload another set of data.
+After every upload (and when the website finishes loading the new data), remember to head to MySQL workbench (or any other ways to connect to the database) and drop new_data to prevent duplicates when users try to upload another set of data.
 
 ## Repository Structure
 ### Backend
@@ -127,12 +127,10 @@ HuggingFace might be down which affects DistilBERT fine-tuned model and keyBERT 
 The CSV template in upload page auto saves in a non datetime format to the users, making it misleading for users. However, when uploaded, it still works as it is in datetime format. We tried to mitigate this issue by highlighting to users that the date must be in datetime format else the database will not accept it.
 
 ### MySQL connectivity issues
-Sometimes when new data gets added too many times to the application, the MySQL database may fail to connect to newdata.py properly. Some form of errors may appear such as database.summary not existing when it does in the database. Users need to try to upload the data again (or in this case upload another set of new data after dropping new_data since sentiment_data already contains the new data)  and make sure that the flask server is stable.
+Sometimes when new data gets added too many times to the application, the MySQL database may fail to connect to newdata.py properly. Some form of errors may appear such as database.summary not existing when it does in the database. Users need to try to upload the data again after restarting the data in the database (re-running the code to transfer all_databases.sql data to the database) and make sure that the flask server is stable.
 
 ### Uploading of new data
-The application was designed with a flaw such that users can only upload new data in one shot without entering the database as new data gets appended to previously uploaded data instead of replacing them. When users try to upload again, the previously uploaded data will get appended again and duplicates will occur. To mitigate this, users need to head to the MySQL database and delete new_data before uploading a new dataset. This method is primitive but we were unable to fix the bug where data gets appended to instead of replaced despite the correct code calls (refer to [app.py](backend/app.py) line 78).
-
-
+The application was designed with a flaw such that users can only upload new data in one shot without editing the database as new data gets appended to previously uploaded data instead of replacing them. When users try to upload again, the previously uploaded data will get processed and then appended again and duplicates will occur. To mitigate this, users need to head to the MySQL database and delete new_data before uploading a new dataset. This method is primitive but we were unable to fix the bug where data gets appended to instead of replaced despite the correct code calls (refer to app.py line 78). 
 
 
 
