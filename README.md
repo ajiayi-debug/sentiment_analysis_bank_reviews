@@ -30,6 +30,3 @@ Use `docker-compose up` to pull mysql image and create container. Take note that
 To download the data (if you need to get a 'restart' in the database due to accidental deletion etc), run `docker exec -i database_docker sh -c 'exec mysql -u root --password=MYSQL12345' < all_databases.sql`. TO get a pure restart (initial condition), make sure you delete any tables that was not there at the start (e.g new_data)
 
 To update the database, run `docker exec database_docker sh -c 'exec mysqldump -u root --password=MYSQL12345 --all-databases' > all_databases.sql`
-
-## Installing the packages
-To install all dependencies, run `pip install -r requirements.txt`
