@@ -35,3 +35,36 @@ To open the html frontend webpage, double click the .html file or if in VS code,
 
 ## Using the application
 To add new data, format your data according to the template downloadable from upload page. Afterwards, upload your data and wait patiently. You can open another tab with address localhost:3000/new_data and press the refresh button after you upload your data. When the tab reloads successfully and you get an output of 'File uploaded successfully', the data has finished processing and the data has been updated into the database. The new data will add on to the existing data that frontend uses. You can filter for the new data by heading to customer reviews and searching for null in Generated reply content as GPT-2 was not run on the new data due to it being in it's beta phase. 
+
+## Repository Structure
+### Backend
+
+| File Name                   | Description                                                                                                    |
+|-----------------------------|----------------------------------------------------------------------------------------------------------------|
+| dataset.py                  | Code for web-scraping, cleaning, and storing data into the database                                              |
+| model_training_and_test.ipynb| Code for training, fine-tuning, and testing of models. Data cleaning for fine-tuning and benchmarking of reviews is done here |
+| finetune_bert.ipynb         | Code for fine-tuning DistilBERT and data cleaning for fine-tuning                                                 |
+| gpt_finetune_causallm.ipynb | Code for fine-tuning GPT-2 with GXS reviews and replies                                                           |
+| scrape_all.ipynb            | Code for running chosen models on GXS reviews and getting output summary, sent to frontend for data visualization|
+| app.py                      | Code for Flask that connects backend to frontend through data sharing                                             |
+| requirements.txt            | Code to install dependencies used in the app, automatically run during Docker compose                               |
+| config.json                 | Configuration for the MySQL database on a local machine                                                           |
+| gpt_model_causallm (folder) | Configuration for fine-tuned GPT-2 model and its safetensors                                                        |
+| newdata.py                  | Code for running DistilBERT (fine-tuned) and KeyBERT on newly uploaded data by users                              |
+
+### Frontend
+
+| File Name           | Description                                                                                                                            |
+|---------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| customer_review.js  | Code for displaying customer reviews on the corresponding webpage, with data processing functions                                       |
+| customer_reviews.html| Code for webpage aesthetics (customer reviews section)                                                                                   |
+| dashboard.js        | Code for the dashboard showing data visualizations, sentiment summaries, and count of reviews                                             |
+| index.html          | Code for webpage aesthetics (dashboard)                                                                                                   |
+| scripts.js          | Code for the left sidebar functionality                                                                                                  |
+| settings.json       | Code for setting the port for the frontend live server                                                                                   |
+| template.csv        | Template CSV file for users to download and structure their data                                                                          |
+| upload_csv.html     | Code for webpage aesthetics (file upload section)                                                                                         |
+| upload_csv.js       | Code for sending uploaded CSV to the backend through Flask, and allowing users to download `template.csv`                                 |
+| wordcloud.html      | Code for the aesthetics of the word cloud                                                                                                |
+| wordcloud.js        | Code that uses summary data keywords to generate the word cloud                                                                          |
+
