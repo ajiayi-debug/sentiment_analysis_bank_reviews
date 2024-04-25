@@ -68,3 +68,27 @@ To add new data, format your data according to the template downloadable from up
 | wordcloud.html      | Code for the aesthetics of the word cloud                                                                                                |
 | wordcloud.js        | Code that uses summary data keywords to generate the word cloud                                                                          |
 
+### Software Requirements
+
+| Package                  | Version |
+|--------------------------|---------|
+| accelerate               | 0.29.3  |
+| app_store_scraper        | 0.3.5   |
+| bertopic                 | 0.16.0  |
+| datasets                 | 2.18.0  |
+| flask                    | 2.2.2   |
+| flask-cors               | 4.0.0   |
+| google_play_scraper      | 1.2.6   |
+| huggingface_hub          | 0.22.2  |
+| keybert                  | 0.8.4   |
+| pandas                   | 1.5.3   |
+| mysql-connector-python   | 8.3.0   |
+| numpy                    | 1.23.5  |
+| rake-nltk                | 1.0.6   |
+| scikit-learn             | 1.2.1   |
+| seaborn                  | 0.12.2  |
+| sqlalchemy               | 1.4.39  |
+| transformers             | 4.39.3  |
+| tqdm                     | 4.66.2  |
+| werkzeug                 | 2.2.2   |
+
