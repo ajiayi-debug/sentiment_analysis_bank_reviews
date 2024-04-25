@@ -36,7 +36,7 @@ To open the html frontend webpage, double click the .html file or if in VS code,
 
 ## Using the application
 To add new data, format your data according to the template downloadable from upload page. Make sure that your date is in date time format. CSV files will auto save in a non datetime format so don't be fooled by the CSV template it is in datetime format! Afterwards, upload your data and wait patiently. You can open another tab with address localhost:3000/new_data and press the refresh button after you upload your data. When the tab reloads successfully and you get an output of 'File uploaded successfully', the data has finished processing and the data has been updated into the database. The new data will add on to the existing data that frontend uses. You can filter for the new data by heading to customer reviews and searching for null in Generated reply content as GPT-2 was not run on the new data due to it being in it's beta phase. 
-After every upload, remember to head to MySQL workbench (or any other ways to connect to the database) and drop new_data to prevent duplicates when users try to upload another set of data.
+After every upload (and when the website finishes loading the new data), remember to head to MySQL workbench (or any other ways to connect to the database) and drop new_data to prevent duplicates when users try to upload another set of data.
 
 ## Repository Structure
 ### Backend
