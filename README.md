@@ -33,8 +33,10 @@ To update the database, run `docker exec database_docker sh -c 'exec mysqldump -
 
 To open the html frontend webpage, double click the .html file or if in VS code, use the live server extension by Ritwick Dey.
 
+
 ## Using the application
 To add new data, format your data according to the template downloadable from upload page. Make sure that your date is in date time format. CSV files will auto save in a non datetime format so don't be fooled by the CSV template it is in datetime format! Afterwards, upload your data and wait patiently. You can open another tab with address localhost:3000/new_data and press the refresh button after you upload your data. When the tab reloads successfully and you get an output of 'File uploaded successfully', the data has finished processing and the data has been updated into the database. The new data will add on to the existing data that frontend uses. You can filter for the new data by heading to customer reviews and searching for null in Generated reply content as GPT-2 was not run on the new data due to it being in it's beta phase. 
+After every upload, remember to head to MySQL workbench (or any other ways to connect to the database) and drop new_data to prevent duplicates when users try to upload another set of data.
 
 ## Repository Structure
 ### Backend
@@ -100,7 +102,7 @@ Model training and testing can be done by running model_training_and_test.ipynb.
 
 ### Code Testing
 
-When `docker-compose up` is run on the terminal, the Flask app app.py starts, starting the server that connects the database called by the backend to the frontend through api calls. Users just need to open any of the html files with a live server by Ritwick Dey (can be installed as an extension in Visual Studio Code), by dragging and dropping any .html file into chrome or by double clicking any of the .html files. When the server is up, customer reviews should show a table while dashboard and word cloud should show some elements. Upload web page should allow users to upload files with a message file uploaded successfully followed by another message that tells users to wait patiently for the results and that they can get an estimate of how long it takes by observing how long localhost:3000/new_data takes to finish loading. If users have uploaded data, they can filter for their updated data by searching for null in generated reply content in customer review webpage (new data has no generated reply. It is instead replaced with the null value to fit sentiment_data better). 
+When `docker-compose up` is run on the terminal, the Flask app app.py starts, starting the server that connects the database called by the backend to the frontend through api calls. Users just need to open any of the html files with a live server by Ritwick Dey (can be installed as an extension in Visual Studio Code), by dragging and dropping any .html file into chrome or by double clicking any of the .html files. When the server is up, customer reviews should show a table while dashboard and word cloud should show some elements. Upload web page should allow users to upload files with a message file uploaded successfully followed by another message that tells users to wait patiently for the results and that they can get an estimate of how long it takes by observing how long localhost:3000/new_data takes to finish loading. If users have uploaded data, they can filter for their updated data by searching for null in generated reply content in customer review webpage (new data has no generated reply. It is instead replaced with the null value to fit sentiment_data better). Users need to drop new_data in the MySQL database (can be done through MySQL workbench) before adding another set of data to prevent duplicated data. There is a bug where new data does not replace the data in new_data but instead appends to it. More time is needed to try and fix the bug.
 
 If users want to change the whole set of sentiment_data and summary, users will need to re-run dataset.py to webscrape, clean and store the data as well as scrape_all.ipynb to get a new set of sentiment_data and summary data. Users need to remember to update all_databases.sql in order for other users to obtain the data. Users can do so by running `docker exec database_docker sh -c 'exec mysqldump -u root --password=MYSQL12345 --all-databases' > all_databases.sql` . 
 
@@ -125,7 +127,10 @@ HuggingFace might be down which affects DistilBERT fine-tuned model and keyBERT 
 The CSV template in upload page auto saves in a non datetime format to the users, making it misleading for users. However, when uploaded, it still works as it is in datetime format. We tried to mitigate this issue by highlighting to users that the date must be in datetime format else the database will not accept it.
 
 ### MySQL connectivity issues
-Sometimes when new data gets added too many times to the application, the MySQL database may fail to connect to newdata.py properly. Some form of errors may appear such as database.summary not existing when it does in the database. Users need to try to upload the data again (or in this case upload another set of new data since sentiment_data already contains the new data)  and make sure that the flask server is stable.
+Sometimes when new data gets added too many times to the application, the MySQL database may fail to connect to newdata.py properly. Some form of errors may appear such as database.summary not existing when it does in the database. Users need to try to upload the data again (or in this case upload another set of new data after dropping new_data since sentiment_data already contains the new data)  and make sure that the flask server is stable.
+
+### Uploading of new data
+The application was designed with a flaw such that users can only upload new data in one shot without entering the database as new data gets appended to previously uploaded data instead of replacing them. When users try to upload again, the previously uploaded data will get appended again and duplicates will occur. To mitigate this, users need to head to the MySQL database and delete new_data before uploading a new dataset. This method is primitive but we were unable to fix the bug where data gets appended to instead of replaced despite the correct code calls (refer to [app.py](backend/app.py) line 78).
 
 
 
