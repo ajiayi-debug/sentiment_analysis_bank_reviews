@@ -24,9 +24,14 @@ To summarise overall intent, two dictionaries containing intent keywords associa
 ## GPT
 As an extension to our project, we wanted to create a language model that was able to generate replies to reviews. For this, the causal language model from HuggingFace was used, with the baseline model 'openai-community/gpt2'. The code for the finetuning of the GPT can be found [gpt_finetune_causallm.ipynb](backend/gpt_finetune_causallm.ipynb).
 
-## Running the database
-Use `docker-compose up` to pull mysql image and create container. Take note that port may need to be changed depending on whether your machine is already using the port. Refer to (docker-compose.yml) on how to change port. Make sure to change the port accordingly in the config file in both backend [config.json(backend)](backend/config.json) and in the main file [config.json(main)](config.json) as well as in MySQL workbench if you would like to open the database in MySQL workbench. 
+## Running the database and application
+Use `docker-compose up` to pull mysql image and Dockerfile image creation and create containers for them. Take note that port may need to be changed depending on whether your machine is already using the port. Refer to (docker-compose.yml) on how to change port. Make sure to change the port accordingly in the config file in both backend [config.json(backend)](backend/config.json) as well as in MySQL workbench if you would like to open the database in MySQL workbench. 
 
-To download the data (if you need to get a 'restart' in the database due to accidental deletion etc), run `docker exec -i database_docker sh -c 'exec mysql -u root --password=MYSQL12345' < all_databases.sql`. TO get a pure restart (initial condition), make sure you delete any tables that was not there at the start (e.g new_data)
+To download the data (if you need to get a 'restart' in the database due to accidental deletion etc), run `docker exec -i database_docker sh -c 'exec mysql -u root --password=MYSQL12345' < all_databases.sql`. To get a pure restart (initial condition), make sure you delete any tables that was not there at the start (e.g new_data)
 
 To update the database, run `docker exec database_docker sh -c 'exec mysqldump -u root --password=MYSQL12345 --all-databases' > all_databases.sql`
+
+To open the html frontend webpage, double click the .html file or if in VS code, use the live server extension by Ritwick Dey.
+
+## Using the application
+To add new data, format your data according to the template downloadable from upload page. Afterwards, upload your data and wait patiently. You can open another tab with address localhost:3000/new_data and press the refresh button after you upload your data. When the tab reloads successfully and you get an output of 'File uploaded successfully', the data has finished processing and the data has been updated into the database. The new data will add on to the existing data that frontend uses. You can filter for the new data by heading to customer reviews and searching for null in Generated reply content as GPT-2 was not run on the new data due to it being in it's beta phase. 
