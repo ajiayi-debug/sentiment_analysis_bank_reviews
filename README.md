@@ -116,10 +116,10 @@ Figure 1: MySQL Workbench Configuration
 User’s port 3307 may already be in use. In this case, the user needs to change the port in the docker-compose.yml to another port. Make sure to change the port number in MySQL workbench accordingly as well.
 
 ### Firewall
-User’s firewall extensions may block Flask from starting. Make sure to disable the firewall or allow localhost:3000 in order for Flask to work.
+User’s firewall extensions may block Flask from starting. Make sure to disable the firewall or allow localhost:3000 through the firewall in order for Flask to work.
 
 ### HuggingFace
-HuggingFace might be down which affects DistilBERT fine-tuned model as the application is unable to call the fine-tuned model API. Users will be able to notice this error when the loaded localhost:3000/new_data shows an error related to being unable to call from HuggingFace. In this case, try again when HuggingFace comes back online. 
+HuggingFace might be down which affects DistilBERT fine-tuned model and keyBERT as the application is unable to call the models' API. Users will be able to notice this error when the loaded localhost:3000/new_data shows an error related to being unable to call from HuggingFace. In this case, try again when HuggingFace comes back online. 
 
 
 
