@@ -97,7 +97,6 @@ def main():
             dataset = dataset.drop(columns=['Unnamed: 0'])
         dataset = analyze_data(dataset)
         dataset = dataset.rename(columns={'replies':'generatedReply'})
-        dataset.head()
 
         # Step 2: Store Analyzed Data Back to Database
         dataset.to_sql(name='sentiment_data', con=engine, if_exists='append', index=False)
