@@ -104,11 +104,11 @@ When `docker-compose up` is run on the terminal, the Flask app app.py starts, st
 
 If users want to change the whole set of sentiment_data and summary, users will need to re-run dataset.py to webscrape, clean and store the data as well as scrape_all.ipynb to get a new set of sentiment_data and summary data. Users need to remember to update all_databases.sql in order for other users to obtain the data. Users can do so by running `docker exec database_docker sh -c 'exec mysqldump -u root --password=MYSQL12345 --all-databases' > all_databases.sql` . 
 
-To open and run the database on MySQL workbench, set up the config as shown below with password MYSQL12345 (Figure 1).
-![mysqlworkbenchconfig](images/Screenshot 2024-04-18 184823.png)
-Figure 1: MySQL configuration
+To open and run the database on MySQL Workbench, set up the config as shown below with password `MYSQL12345` (Figure 1).
 
+![MySQL Workbench Configuration](images/Screenshot%202024-04-18%20184823.png)
 
+Figure 1: MySQL Workbench Configuration
 
 ## Possible Issues
 
