@@ -125,7 +125,10 @@ HuggingFace might be down which affects DistilBERT fine-tuned model and keyBERT 
 The CSV template in upload page auto saves in a non datetime format to the users, making it misleading for users. However, when uploaded, it still works as it is in datetime format. We tried to mitigate this issue by highlighting to users that the date must be in datetime format else the database will not accept it.
 
 ### MySQL connectivity issues
-Sometimes when new data gets added too many times to the application, the MySQL database may fail to connect to newdata.py properly. Some form of errors may appear such as database.summary not existing when it does in the database. Users need to try to upload the data again (or in this case upload another set of new data since sentiment_data already contains the new data)  and make sure that the flask server is stable.
+Sometimes when new data gets added too many times to the application, the MySQL database may fail to connect to newdata.py properly. Some form of errors may appear such as database.summary not existing when it does in the database. Users need to try to upload the data again (or in this case upload another set of new data after dropping new_data since sentiment_data already contains the new data)  and make sure that the flask server is stable.
+
+### Uploading of new data
+The application was designed with a flaw such that users can upload new data in one shot as new data gets appended to previously uploaded data instead of replacing them. When users try to upload again, the previously uploaded data will get appended again and duplicates will occur. To mitigate this, users need to head to the MySQL database and delete new_data before uploading a new dataset. This method is primitive but we were unable to fix the bug where data gets appended to instead of replaced despite the correct code calls (refer to [app.py](backend/app.py) line 78).
 
 
 
