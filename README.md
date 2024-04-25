@@ -121,6 +121,13 @@ User’s firewall extensions may block Flask from starting. Make sure to disable
 ### HuggingFace
 HuggingFace might be down which affects DistilBERT fine-tuned model and keyBERT as the application is unable to call the models' API. Users will be able to notice this error when the loaded localhost:3000/new_data shows an error related to being unable to call from HuggingFace. In this case, try again when HuggingFace comes back online. 
 
+### CSV template
+The CSV template in upload page auto saves in a non datetime format to the users, making it misleading for users. However, when uploaded, it still works as it is in datetime format. We tried to mitigate this issue by highlighting to users that the date must be in datetime format else the database will not accept it.
+
+### MySQL connectivity issues
+Sometimes when new data gets added too many times to the application, the MySQL database may fail to connect to newdata.py properly. Some form of errors may appear such as database.summary not existing when it does in the database. Users need to try to upload the data again (or in this case upload another set of new data since sentiment_data already contains the new data)  and make sure that the flask server is stable.
+
+
 
 
 
