@@ -1,7 +1,7 @@
 // Function to fetch data from the API
 function fetchCustomerReviews() {
-  return fetch("http://localhost:3000/customer_review")
-    .then((response) => response.json())
+  return fetch("http://localhost:3000/customer_review") 
+    .then((response) => response.json()) 
     .then((data) => {
       const reviews = data.map((row) => {
         const { score, content, date, sentiment, keywords, replyContent, generatedReply } = row;
@@ -19,20 +19,22 @@ function fetchCustomerReviews() {
         };
       });
 
-      return reviews;
+      return reviews; 
     })
+
+    // Log error if data fetching fails and return empty array if there is error
     .catch((error) => {
       console.error("Error fetching data:", error);
       return [];
     });
 }
 
-// Function to filter data based on selected criteria
+// Function to filter data based on selected criteria 
+// Criteria include keyword, keyword from generated reply content, score, date range (startDate, endDate)
 function filter(data) {
   const keywordInput = document.querySelector("#keywordInput").value.trim().toLowerCase();
   const replyKeywordInput = document.querySelector("#replyKeywordInput").value.trim().toLowerCase();
   const selectedScores = Array.from(document.querySelectorAll(".scoreButton.selected")).map((button) => button.dataset.score);
-
   const startDateInput = document.querySelector("#startDateInput").value.trim();
   const endDateInput = document.querySelector("#endDateInput").value.trim();
 
@@ -44,6 +46,7 @@ function filter(data) {
       passesFilter = passesFilter && filterByKeyword([entry], keywordInput).length > 0;
     }
 
+    // replyKeyword filter
     if (replyKeywordInput) {
       passesFilter = passesFilter && filterByReplyKeyword([entry], replyKeywordInput).length > 0;
     }
@@ -54,7 +57,7 @@ function filter(data) {
       passesFilter = passesFilter && selectedScores.includes(entryScore);
     }
 
-    // Date filter
+    // Date Range filter
     if (startDateInput && endDateInput) {
       const entryDate = new Date(entry.date);
       const startDate = new Date(startDateInput);
@@ -68,6 +71,7 @@ function filter(data) {
   });
 }
 
+
 // Function to filter data by keywords
 function filterByKeyword(data, keyword) {
   const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -75,6 +79,7 @@ function filterByKeyword(data, keyword) {
   return data.filter((entry) => regex.test(entry.keywords));
 }
 
+// Function to filter data by keywords from generated reply
 function filterByReplyKeyword(data, keyword) {
   const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const regex = new RegExp(escapedKeyword, "i");
@@ -105,7 +110,7 @@ fetchCustomerReviews().then((reviews) => {
   // Populate the table with reviews
   populateTable(reviews);
 
-  // Event listeners for filtering and other interactions
+  // Event listener for filtering 
   document.querySelectorAll(".filter-option").forEach((option) => {
     option.addEventListener("input", () => {
       const filteredData = filter(reviews);
@@ -113,6 +118,7 @@ fetchCustomerReviews().then((reviews) => {
     });
   });
 
+  // Event listener for score selection 
   document.querySelectorAll(".scoreButton").forEach((button) => {
     button.addEventListener("click", () => {
       button.classList.toggle("selected");
@@ -121,6 +127,7 @@ fetchCustomerReviews().then((reviews) => {
     });
   });
 
+  // Event listener for keyword clearing
   document.querySelector("#clearKeywordButton").addEventListener("click", () => {
     document.querySelector("#keywordInput").value = "";
     const filteredData = filter(reviews);

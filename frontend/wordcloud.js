@@ -1,71 +1,60 @@
-// word cloud
+// Initialise Word Cloud
 async function initWordCloud() {
-    //sample data
-    const scores = await fetchSummary();
-    
-    const words = [
-        { text: "easy", size: 21 ,category: "positive"},
-        { text: "unable", size: 17 ,category: "negative" },
-        { text: "savings", size: 10, category: "positive" },
-        { text: "friendly", size: 8 , category: "positive"},
-        { text: "singpass", size: 17, category: "negative"},
-        { text: "fast", size: 5 , category: "positive"},
-        { text: "error", size: 6, category: "negative"},
-        { text: "waste", size: 3, category: "negative"},
-        { text: "stuck", size: 4, category: "negative"}
+  const scores = await fetchSummary();
   
-    ];
-    const chart = anychart.tagCloud(scores.map(word => ({
-      x: word.text,
-      value: word.size,
-      category: word.category
-    })));
-  
-    let palette = anychart.palettes.distinctColors();
-    palette.items(
-        ["#ff0000", "#00FF00", "#ffffff"]
-    );
-  
-    // Set chart container
-    chart.background({fill: "#490c56"})
-    chart.container('word-cloud');
-    chart.angles([0])
-    chart.palette(palette);
-    chart.colorRange(true);
-    chart.colorRange().length('80%');
-  
-    // Draw the chart
-    chart.draw();
+  const chart = anychart.tagCloud(scores.map(word => ({
+    x: word.text,
+    value: word.size,
+    category: word.category
+  })));
+
+  let palette = anychart.palettes.distinctColors();
+  palette.items(
+      ["#ff0000", "#00FF00"]
+  );
+
+  // Set chart container
+  chart.background({fill: "#490c56"})
+  chart.container('word-cloud');
+  chart.angles([0])
+  chart.palette(palette);
+  chart.colorRange(true);
+  chart.colorRange().length('80%');
+
+  // Draw the chart
+  chart.draw();
 }
 
+// Function to fetch summary data from the server and process it into a word map
 async function fetchSummary() {
-  const response = await fetch('http://localhost:3000/summary');
-  const data = await response.json();
+const response = await fetch('http://localhost:3000/summary');
+const data = await response.json();
 
-  const wordMap = {};
+const wordMap = {};
 
-  data.forEach((item) => {
-    const { keyword, count, sentiment } = item;
-    const keywordList = keyword.split(" ");
+data.forEach((item) => {
+  const { keyword, count, sentiment } = item;
+  const keywordList = keyword.split(" ");
 
-    keywordList.forEach((word) => {
-      if (word.trim() !== "") {
-        const cleanedWord = word.trim().toLowerCase(); 
+  keywordList.forEach((word) => {
+    if (word.trim() !== "") {
+      const cleanedWord = word.trim().toLowerCase(); 
 
-        if (wordMap[cleanedWord]) {
-          wordMap[cleanedWord].size += count; 
-        } else {
-          wordMap[cleanedWord] = { text: cleanedWord, size: count, category: sentiment };
-        }
+      if (wordMap[cleanedWord]) {
+        wordMap[cleanedWord].size += count; 
+      } else {
+        wordMap[cleanedWord] = { text: cleanedWord, size: count, category: sentiment };
       }
-    });
+    }
   });
+});
 
-  const scores = Object.values(wordMap);
+const scores = Object.values(wordMap);
 
-  return scores;
+return scores;
 }
 
+// Call initialise Word Cloud function
 anychart.onDocumentReady(() => {
-  initWordCloud(); 
+initWordCloud(); 
 });

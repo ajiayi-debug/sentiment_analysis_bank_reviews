@@ -71,23 +71,31 @@
     </aside>
     <!-- End Sidebar -->
 
+    <!-- Main -->
     <div class="main-container">
       <div class="main-title">
         <h2>CUSTOMER REVIEWS</h2>
       </div>
+      <!-- Filter Bar-->
       <div class="filter-controls">
         <div class="filter-bar">
           <div class="filter-option filter-label">Filter by:</div>
+
+          <!-- Filter by keyword-->
           <div class="filter-option" data-filter="content">
             <div>Keyword</div>
             <input type="text" id="keywordInput" placeholder="Enter keyword...">
             <button id="clearKeywordButton">Clear</button>
           </div>
+
+          <!-- Filter by keyword from generated reply-->
           <div class="filter-option" data-filter="reply-content">
             <div>Generated Reply Content</div>
             <input type="text" id="replyKeywordInput" placeholder="Enter keywords...">
             <button id="clearKeywordButton">Clear</button>
           </div>
+
+          <!-- Filter by score(s)-->
           <div class="filter-option" data-filter="score">
             <div>Score</div>
             <div id="scoreButtons">
@@ -98,12 +106,15 @@
               <button class="scoreButton" data-score="5">5</button>
             </div>
           </div>
+
+          <!-- Filter by date range-->
           <div class="filter-option" data-filter="date">
             <div>Date Range</div>
             <input type="date" id="startDateInput"> to <input type="date" id="endDateInput">
           </div>
         </div>
       </div>
+      <!-- End Main -->
 
       <div class="customer-reviews">
         <!-- Customer reviews will be populated dynamically from JavaScript -->
