@@ -90,7 +90,7 @@ def main():
     engine = get_sqlalchemy_engine(db_config)
 
     try:
-        # Step 1: Fetch Data and Analyze It
+        # Step 1: Fetch Data and Process It
         query = "SELECT * FROM new_data"
         dataset = fetch_data(engine, query)
         if 'Unnamed: 0' in dataset.columns:
@@ -98,10 +98,10 @@ def main():
         dataset = analyze_data(dataset)
         dataset = dataset.rename(columns={'replies':'generatedReply'})
 
-        # Step 2: Store Analyzed Data Back to Database
+        # Step 2: Store Processed Data Back to Database
         dataset.to_sql(name='sentiment_data', con=engine, if_exists='append', index=False)
 
-        # Step 3: Retrieve Stored Data for Consistency Check
+        # Step 3: Retrieve Stored Data for Summary function
         stored_dataset = fetch_data(engine, "SELECT * FROM sentiment_data")
 
         # Step 4: Summarize the Sentiment
