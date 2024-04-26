@@ -1,3 +1,4 @@
+  // Function to display selected file name
   function displayFileName() {
     const fileInput = document.getElementById('csvFileInput');
     const selectedFileName = document.getElementById('selectedFileName');
@@ -9,6 +10,7 @@
     }
   }
 
+  // Function to upload CSV file
   function uploadCSV() {
     const fileInput = document.getElementById('csvFileInput');
 
@@ -21,10 +23,7 @@
     const formData = new FormData();
     formData.append('csvFile', file);
 
-    // Show the loading indicator
-    // const loadingIndicator = document.getElementById('loadingIndicator');
-    // loadingIndicator.style.display = 'block';
-
+    // Upload the CSV file to the server
     fetch('http://localhost:3000/upload', {
         method: 'POST',
         body: formData
@@ -59,13 +58,5 @@
           alert('An unexpected error occurred. Please try again later.');
       }
     });
-    // .catch(error => {
-    //     console.error('There was a problem:', error);
-    //     alert('An error occurred during the process.');
-    // })
-    // .finally(() => {
-    //     // Hide the loading indicator regardless of success or error
-    //     loadingIndicator.style.display = 'none';
-    // });
   }
 

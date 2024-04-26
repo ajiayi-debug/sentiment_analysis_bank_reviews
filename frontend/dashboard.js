@@ -1,6 +1,6 @@
 let parsedData;
 
-// Fetch CSV data
+// Function to fetch CSV data from the API
 fetch('http://localhost:3000/customer_review')
     .then(response => response.json())
     .then(data => {
@@ -139,11 +139,13 @@ function updateCharts(data) {
     });
 }
 
+// Function to update review count
 function updateCount(count){
     const element = document.querySelector(".review-count"); 
     element.textContent = count;
 }
 
+// Function to update net sentiment score
 function updateNetSentimentScore(score){
     const element = document.querySelector(".sentiment-score"); 
     element.textContent = parseFloat(score.toFixed(2));;
