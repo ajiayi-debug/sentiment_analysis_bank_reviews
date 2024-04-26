@@ -29,7 +29,7 @@ Use `docker-compose up` to pull mysql image and Dockerfile image creation and cr
 
 To download the data (if you need to get a 'restart' in the database due to accidental deletion etc), run `docker exec -i database_docker sh -c 'exec mysql -u root --password=MYSQL12345' < all_databases.sql`. To get a pure restart (initial condition), make sure you delete any tables that was not there at the start (e.g new_data)
 
-To update the database, run `docker exec database_docker sh -c 'exec mysqldump -u root --password=MYSQL12345 --all-databases' > all_databases.sql`
+To update the database, run `docker exec database_docker sh -c 'exec mysqldump -u root --password=MYSQL12345 --all-databases' > all_databases.sql`. This will edit [all_databases.sql](all_databases.sql) so make sure that you are sure of your edits before running. It is advised to create another .sql file with the same command in case of errors or loss.
 
 To open the html frontend webpage, double click the .html file or if in VS code, use the live server extension by Ritwick Dey.
 
