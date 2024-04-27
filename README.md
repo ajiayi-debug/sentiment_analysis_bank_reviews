@@ -9,7 +9,8 @@ This project aims to provide our organisation with an easy and methodical way of
 Data scraping for this project was first carried out in March 2024 and updated in April 2024. Reviews from various banking apps on the Apple Store and Google Play Store were scraped, and relevant information such as ratings, comments, replies, and thumbs up counts were retained. Other information that contained personal information or were not useful were discarded. The code used for data scraping can be found in [dataset.py](backend/dataset.py). The final dataset was subsequently uploaded to a MySQL database for easier access and retrieval.
 
 ## Model Description
-The code for model training and testing can be found [model_training_and_test.ipynb](backend/model_training_and_test.ipynb).
+The code for model training and testing can be found [model_training_and_test.ipynb](backend/model_training_and_test.ipynb). This file does not affect the application but insteads just shows our experiments that we have ran. To view the code that affects the application (processes our webscrapped data and send it to the database for frontend retrieval), view [scrape_all.ipynb](backend/scrape_all.ipynb).
+
 
 ### Sentiment Analysis
 We performed sentiment analysis using a fine-tuned HuggingFace model. For the labels, we used the star ratings of the reviews collected, classifying reviews with more than 3 stars as 'positive' and the rest (≤3 stars) as 'negative'. The fine-tuned model can be found [here](https://huggingface.co/ajiayi/finetuning-sentiment-model-bank_reviews-otherbank)
