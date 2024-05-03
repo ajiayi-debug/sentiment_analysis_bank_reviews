@@ -1,5 +1,5 @@
 # Sentiment Analysis of Customer Feedback
-##Updates:
+## Updates:
 There is a bug in the word cloud where the 'majority' sentiment is the first sentiment that that appears in sentiment column in summary, causing singpass to be 'positive' when in actual fact it is 'negative'. I will try to fix it if I have the time.
 ## Background
 In today’s digital era, diverse channels such as social media platforms, emails, and customer surveys are being used to provide customer feedback. This has made it a challenge for our orgnanisation to efficiently and accurately analyse the feedback, which is crucial in enabling data-driven decision-making for the company.
